@@ -1,18 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
+// Routing
 import { AppRoutingModule } from './app-routing.module';
 
+// Angular Material
+import { MatModule } from './mat/mat.module';
+
+// Components
 import { AppComponent } from './app.component';
 import { MessagesComponent } from './messages/messages.component';
 import { LoginComponent } from './login/login.component';
-
-import { AuthService } from './auth.service';
-import { MessageService } from './message.service';
 import { RecordsComponent } from './records/records.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
+// Services
+import { AuthService } from './auth.service';
+import { MessageService } from './message.service';
 
 @NgModule({
   declarations: [
@@ -21,12 +27,13 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     MessagesComponent,
     RecordsComponent,
     AnalyticsComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    MatModule,
   ],
   providers: [
     AuthService,

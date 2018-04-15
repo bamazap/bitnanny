@@ -1,0 +1,25 @@
+header {
+  background: white;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 25px 0 25px;
+  border-bottom: 1px solid gray;
+}
+
+h1 {
+  margin: 0;
+  font-size: 4rem;
+  padding-bottom: 10px;
+}
+
+nav {
+  padding-top: 25px;
+  border-bottom: none;
+}
+
+a {
+  background: silver;
+  padding: 0 50px 0 50px;
+  margin: 0 10px 0 10px;
+}
