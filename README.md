@@ -1,6 +1,15 @@
-# Bitnanny
+# bitNanny
+
+6.813/6.831M Final Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+
+## Authors
+
+Francis Soucy
+Kevin Li
+Barry McNamara
+Ignacio Fernandez
 
 ## Development server
 
