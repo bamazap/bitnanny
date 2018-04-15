@@ -13,9 +13,12 @@ export class AppComponent {
 
   constructor(private router: Router) {}
 
-  // Used to decide wheter or not to show the navbar
   // TODO: actual login checking
-  isLoggedIn() {
+  showNavbar() {
     return this.router.url !== '/login';
+  }
+
+  showFilters() {
+    return ['/records', '/analytics'].includes(this.router.url);
   }
 }

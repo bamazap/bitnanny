@@ -1,0 +1,27 @@
+#filters {
+  border-width: 1px 0 1px 0;
+  border-style: solid;
+  border-color: lightgray;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter {
+  flex-grow: 1;
+  margin: 0 20px 0 20px;
+  margin-top: 0.5em;
+  margin-bottom: -0.5em;
+}
+
+.filter:first-child {
+  margin-left: 40px;
+}
+
+.filter:last-child {
+  margin-right: 40px;
+}
+
+.select-none {
+  font-style: italic;
+  color: gray;
+}

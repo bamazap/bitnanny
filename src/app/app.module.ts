@@ -15,10 +15,12 @@ import { LoginComponent } from './login/login.component';
 import { RecordsComponent } from './records/records.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FiltersComponent } from './filters/filters.component';
 
 // Services
 import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { MessageService } from './message.service';
     RecordsComponent,
     AnalyticsComponent,
     NavbarComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
