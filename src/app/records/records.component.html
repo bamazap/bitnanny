@@ -1,3 +1,13 @@
-<p>
-  records works!
-</p>
+<div fxFlexFill fxLayout='row' id='calendar'>
+  <button class='time-travel'>
+    &larr;
+  </button>
+  <div
+    *ngFor="let day of showDays" fxFlex='1 1 0' class='day'>
+    <div class='day-header'>{{ day.name }}</div>
+    <div class='day-content'>{{ day.name }}</div>
+  </div>
+  <button class='time-travel'>
+    &rarr;
+  </button>
+</div>

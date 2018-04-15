@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +36,7 @@ import { MessageService } from './message.service';
   imports: [
     BrowserModule,
     FormsModule,
+    FlexLayoutModule,
     AppRoutingModule,
     MatModule,
   ],
