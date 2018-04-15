@@ -1,36 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { filterInPlace } from '../utils';
+import { MatSnackBar } from '@angular/material';
 
-export enum Context {
-  Success= 'success',
-  Info= 'info',
-  Warning= 'warning',
-  Danger= 'danger',
-}
-
-export interface Message {
-  content: string;
-  context: Context;
-  id: number;
-}
 
 @Injectable()
 export class MessageService {
-  messages: Message[] = [];
-  nextID = 0;
+  constructor(public snackBar: MatSnackBar) {}
 
-  add(content: string, context: Context= Context.Info) {
-    this.messages.push({ content, context, id: this.nextID });
-    this.nextID += 1;
+  add(content: string, action = 'dismiss') {
+    this.snackBar.open(content, action);
   }
 
   clear() {
-    this.messages = [];
-    this.nextID = 0;
-  }
-
-  remove(message: Message) {
-    filterInPlace(this.messages, m => m.id !== message.id);
+    this.snackBar.dismiss();
   }
 }

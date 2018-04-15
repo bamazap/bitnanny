@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../auth.service';
-import { MessageService, Context } from '../message.service';
+import { MessageService } from '../message.service';
 
 import { Router } from '@angular/router';
 
@@ -26,8 +26,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.login(this.username, this.password)
       .subscribe(
-        success => this.router.navigateByUrl('/records'),
-        failure => this.msg.add('Login unsuccessful.', Context.Danger),
+        success => {
+          this.msg.clear();
+          this.router.navigateByUrl('/records');
+        },
+        failure => this.msg.add('Login unsuccessful.'),
       ); // TODO: Redirect somewhere
   }
 

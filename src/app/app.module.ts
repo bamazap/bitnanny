@@ -11,7 +11,6 @@ import { MatModule } from './mat/mat.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { MessagesComponent } from './messages/messages.component';
 import { LoginComponent } from './login/login.component';
 import { RecordsComponent } from './records/records.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
@@ -27,7 +26,6 @@ import { MessageService } from './message.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    MessagesComponent,
     RecordsComponent,
     AnalyticsComponent,
     NavbarComponent,
