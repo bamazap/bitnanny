@@ -16,10 +16,13 @@ import { RecordsComponent } from './records/records.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FiltersComponent } from './filters/filters.component';
+import { DayComponent } from './day/day.component';
 
 // Services
 import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
+import { ActivityService } from './activity.service';
+import { MetricService } from './metric.service';
 
 
 @NgModule({
@@ -30,6 +33,7 @@ import { MessageService } from './message.service';
     AnalyticsComponent,
     NavbarComponent,
     FiltersComponent,
+    DayComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,8 @@ import { MessageService } from './message.service';
   providers: [
     AuthService,
     MessageService,
+    ActivityService,
+    MetricService,
   ],
   bootstrap: [AppComponent],
 })

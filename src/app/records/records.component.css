@@ -3,7 +3,7 @@
 }
 
 #calendar * {
-  margin: 0 10px 0 10px;
+  margin: 0;
 }
 
 #calendar *:first-child {
@@ -17,22 +17,11 @@
 .time-travel {
   width: 2.5vw;
   border: none;
+}
+
+.time-travel button {
   background-color: lightgray;
-}
-
-.day {
-  background: lightgray
-}
-
-.day-header {
-  font-size: 1.25em;
-  font-weight: bold;
-  background: white;
-  width: calc(100% - 4px);
-  border: 2px solid red;
-}
-
-.day-content {
-  text-orientation: upright;
-  writing-mode: vertical-lr;
+  border: none;
+  width: 100%;
+  height: 100%;
 }

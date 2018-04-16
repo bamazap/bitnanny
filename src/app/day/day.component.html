@@ -1,0 +1,14 @@
+<div fxLayout='column' class='day'>
+  <div class='day-header' fxFlex='0 1 auto'>{{ day }}</div>
+  <div
+    fxLayout='column'
+    fxLayoutAlign='start center' class='day-content' fxFlex='1 1 auto'>
+    <div *ngFor='let activity of activities' class='activity'>
+      <div class='name'>{{ activity.description }}</div>
+      <div class='category'>{{ activity.category }}</div>
+      <div class='duration'>{{ activity.duration }}</div>
+      <div class='children'>childName</div>
+    </div>
+    <mat-icon class='new-activity'>add_circle</mat-icon>
+  </div>
+</div>
