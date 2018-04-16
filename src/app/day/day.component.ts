@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 
+import { Activity } from '../activity';
 import { ActivityService } from '../activity.service';
 
 const days = [
@@ -35,7 +36,7 @@ const months = [
 export class DayComponent implements OnInit {
   @Input() daysBack: number;
   day = '';
-  activities = [];
+  activities: Activity[] = [];
 
   constructor(private activityService: ActivityService) { }
 
@@ -47,7 +48,8 @@ export class DayComponent implements OnInit {
   }
 
   getActivities() {
-    this.activities = this.activityService.getActivitiesByDay(this.daysBack);
+    this.activityService.getActivitiesByDay(this.daysBack)
+      .subscribe(activities => this.activities = activities);
   }
 
 }

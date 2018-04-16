@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +26,8 @@ import { MessageService } from './message.service';
 import { ActivityService } from './activity.service';
 import { MetricService } from './metric.service';
 
+import { InMemoryDataService } from './in-memory-data.service';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +45,11 @@ import { MetricService } from './metric.service';
     FlexLayoutModule,
     AppRoutingModule,
     MatModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService,
+      { dataEncapsulation: false, delay: 0 }
+    )
   ],
   providers: [
     AuthService,

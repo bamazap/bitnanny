@@ -16,15 +16,11 @@
   text-align: center;
   background-color: lightgray;
   margin: 5px 0 5px 0;
-  width: 100%;
-}
-
-.name {
-  font-size: 1.5em;
+  width: calc(100% - 10px);
 }
 
 .category {
-  font-style: italic;
+  font-size: 1.5em;
 }
 
 .new-activity {
