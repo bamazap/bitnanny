@@ -30,3 +30,9 @@ export function range(start: number, stop?: number, step = 1): number[] {
 export function unixDays(unixMSec: number) {
   return Math.floor(unixMSec / (1000 * 60 * 60 * 24));
 }
+
+// like random.randint in python
+// returns an integer i s.t. min <= i <= max
+export function randint(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

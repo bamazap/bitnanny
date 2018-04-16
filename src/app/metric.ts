@@ -5,3 +5,8 @@ export class Metric {
   name: string;
   rating: string;
 }
+
+export const MetricNames = [
+  'Mood',
+  'Energy',
+]

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ActivityCategories } from '../activity';
+import { MetricNames } from '../metric';
+
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
@@ -10,21 +13,18 @@ export class FiltersComponent implements OnInit {
     { id: 0, name: 'Brian' },
     { id: 1, name: 'Emily' },
   ];
-
-  activities = [
-    { id: 0, name: 'Sleep'},
-    { id: 1, name: 'Athletics'},
-    { id: 2, name: 'Electronics'},
-  ];
-
-  metrics = [
-    { id: 0, name: 'Mood'},
-    { id: 1, name: 'Energy'},
-  ];
+  activities: { id: number, name: string}[] = [];
+  metrics: { id: number, name: string}[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.activities = ActivityCategories.map((name, id) => {
+      return { id, name };
+    });
+    this.metrics = MetricNames.map((name, id) => {
+      return { id, name };
+    });
   }
 
 }
