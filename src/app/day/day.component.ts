@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 
 import { Activity } from '../activity';
 import { ActivityService } from '../activity.service';
+import { unixDays } from '../../utils';
 
 const days = [
   'Sunday',
@@ -48,7 +49,8 @@ export class DayComponent implements OnInit {
   }
 
   getActivities() {
-    this.activityService.getActivitiesByDay(this.daysBack)
+    const dayNumber = unixDays(new Date().getTime()) - this.daysBack;
+    this.activityService.getActivitiesByDay(dayNumber)
       .subscribe(activities => this.activities = activities);
   }
 

@@ -24,3 +24,9 @@ export function range(start: number, stop?: number, step = 1): number[] {
   }
   return output;
 }
+
+// given number of milliseconds since Jan 1, 1970 at 0:00:000
+// return number of days since Jan 1, 1970 (fractional days discarded)
+export function unixDays(unixMSec: number) {
+  return Math.floor(unixMSec / (1000 * 60 * 60 * 24));
+}
