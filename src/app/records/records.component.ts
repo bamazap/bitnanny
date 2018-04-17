@@ -17,7 +17,7 @@ export class RecordsComponent implements OnInit {
     this.generateDaysArray();
   }
 
-  travelBack() {
+  travelBackward() {
     this.latestDay += 1;
     this.generateDaysArray();
   }

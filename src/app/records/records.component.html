@@ -1,6 +1,6 @@
 <div fxFlexFill fxLayout='row' id='calendar'>
   <div class='time-travel'>
-    <button>
+    <button (click)='travelBackward()'>
       &larr;
     </button>
   </div>
@@ -12,7 +12,7 @@
   >
   </app-day>
   <div class='time-travel'>
-    <button *ngIf='latestDay > 0'>
+    <button (click)='travelForward()' *ngIf='latestDay > 0'>
       &rarr;
     </button>
 </div>
