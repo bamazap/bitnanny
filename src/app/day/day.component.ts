@@ -36,7 +36,8 @@ const months = [
 })
 export class DayComponent implements OnInit {
   @Input() daysBack: number;
-  day = '';
+  dayNumber: number;
+  dayText = '';
   records: Record[] = [];
 
   constructor(private recordService: RecordService) { }
@@ -44,14 +45,19 @@ export class DayComponent implements OnInit {
   ngOnInit() {
     const d = new Date();
     d.setDate(d.getDate() - this.daysBack);
-    this.day = `${days[d.getDay()].slice(0, 3)} ${d.getDate()}`;
+    this.dayText = `${days[d.getDay()].slice(0, 3)} ${d.getDate()}`;
+    this.dayNumber = unixDays(new Date().getTime()) - this.daysBack;
+
     this.getRecords();
   }
 
   getRecords() {
-    const dayNumber = unixDays(new Date().getTime()) - this.daysBack;
-    this.recordService.getRecordsByDay(dayNumber)
+    this.recordService.readRecordsByDay(this.dayNumber)
       .subscribe(records => this.records = records);
+  }
+
+  onAdd(record: Record) {
+    this.records.push(record);
   }
 
 }

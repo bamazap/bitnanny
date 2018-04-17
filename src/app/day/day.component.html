@@ -1,11 +1,11 @@
 <div fxLayout='column' class='day'>
-  <div class='day-header' fxFlex='0 1 auto'>{{ day }}</div>
+  <div class='day-header' fxFlex='0 1 auto'>{{ dayText }}</div>
   <div
     fxLayout='column'
     fxLayoutAlign='start center' class='day-content' fxFlex='1 1 auto'>
     <div *ngFor='let record of records' class='record'>
       <app-record [record]='record'></app-record>
     </div>
-    <mat-icon class='new-record'>add_circle</mat-icon>
+    <app-add-record [day]='dayNumber' (onAdd)='onAdd($event)'></app-add-record>
   </div>
 </div>

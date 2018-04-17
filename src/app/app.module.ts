@@ -28,6 +28,7 @@ import { MessageService } from './message.service';
 import { RecordService } from './record.service';
 
 import { InMemoryDataService } from './in-memory-data.service';
+import { AddRecordComponent } from './add-record/add-record.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     DayComponent,
     RecordDialogComponent,
     RecordComponent,
+    AddRecordComponent,
   ],
   imports: [
     BrowserModule,

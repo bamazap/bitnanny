@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
@@ -7,16 +7,16 @@ import {
 } from '../record-dialog/record-dialog.component';
 import { RecordService } from '../record.service';
 
-import { Record } from '../record';
-
+import { Record, RecordNoID } from '../record';
 
 @Component({
-  selector: 'app-record',
-  templateUrl: './record.component.html',
-  styleUrls: ['./record.component.css']
+  selector: 'app-add-record',
+  templateUrl: './add-record.component.html',
+  styleUrls: ['./add-record.component.css']
 })
-export class RecordComponent implements OnInit {
-  @Input() record: Record;
+export class AddRecordComponent implements OnInit {
+  @Input() day: number;
+  @Output() onAdd = new EventEmitter<Record>();
 
   constructor(
     private dialog: MatDialog,
@@ -25,20 +25,17 @@ export class RecordComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.data = this.record;
+    dialogConfig.data = new RecordNoID();
 
     this.dialog.open(RecordDialogComponent, dialogConfig)
       .afterClosed().subscribe(data => {
         if (data) {
-          this.recordService.updateRecord(<Record>this.record)
-            .subscribe(() => {
-              this.record.value = data.value;
-              this.record.descriptor = data.descriptor;
-            });
+          this.recordService.createRecord(data)
+            .subscribe(record => this.onAdd.emit(record));
         }
       });
   }

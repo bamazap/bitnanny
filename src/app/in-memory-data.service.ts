@@ -1,18 +1,11 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import { Record } from './record';
+import { Record, RecordNoID } from './record';
 import { unixDays, range, randint } from '../utils';
 
 function withID<T>(obj: T, i: number): T & { id: number } {
   obj['id'] = i;
   return <T & { id: number }>obj;
-}
-
-interface RecordNoID {
-  day: number;
-  child: number;
-  descriptor: string;
-  value: number;
 }
 
 function generateSleep(nDays: number): RecordNoID[] {

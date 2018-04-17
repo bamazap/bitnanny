@@ -20,12 +20,17 @@ export class RecordService {
 
   constructor(private http: HttpClient) { }
 
-  getRecordsByDay(day: number): Observable<Record[]> {
+  readRecordsByDay(day: number): Observable<Record[]> {
     return this.http.get<Record[]>(`${recordsUrl}/?day=${day}`);
   }
 
-  updateRecord(record: Record) {
+  // TODO: figure out return type
+  updateRecord(record: Record): Observable<any> {
     return this.http.put(recordsUrl, record, httpOptions);
+  }
+
+  createRecord(record: Record): Observable<Record> {
+    return this.http.post<Record>(recordsUrl, record, httpOptions);
   }
 
 }

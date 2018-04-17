@@ -16,15 +16,3 @@
   margin: 5px 0 5px 0;
   width: calc(100% - 10px);
 }
-
-.new-record {
-  width: 60px;
-  height: 60px;
-  font-size: 52px;
-  color: green;
-}
-
-.new-record:hover {
-  cursor: pointer;
-  filter: brightness(125%);
-}
