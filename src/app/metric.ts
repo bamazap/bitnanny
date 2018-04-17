@@ -9,4 +9,4 @@ export class Metric {
 export const MetricNames = [
   'Mood',
   'Energy',
-]
+];

@@ -1,0 +1,19 @@
+mat-card {
+  background-color: lightgray;
+  border-radius: 5%;
+  padding: 5px;
+}
+
+mat-card:hover {
+  filter: brightness(105%);
+  cursor: pointer;
+}
+
+mat-card-header {
+  justify-content: center;
+}
+
+mat-card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}

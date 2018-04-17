@@ -9,10 +9,10 @@ function withID<T>(obj: T, i: number): T & { id: number } {
 }
 
 interface ActivityNoID {
-  day: number,
-  child: number,
-  category: string,
-  duration: number
+  day: number;
+  child: number;
+  category: string;
+  duration: number;
 }
 
 function generateSleep(nDays: number): ActivityNoID [] {

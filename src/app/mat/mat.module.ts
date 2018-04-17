@@ -5,6 +5,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 
 // Imports all Angular Material modules used in the application
 // Include this wherever you'd like to use the components
@@ -15,6 +18,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatSnackBarModule,
     MatIconModule,
+    MatDialogModule,
+    MatCardModule,
+    MatInputModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -22,6 +28,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatSnackBarModule,
     MatIconModule,
+    MatDialogModule,
+    MatCardModule,
+    MatInputModule,
   ],
 })
 export class MatModule { }

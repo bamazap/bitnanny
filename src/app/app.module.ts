@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -19,6 +19,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FiltersComponent } from './filters/filters.component';
 import { DayComponent } from './day/day.component';
+import { RecordDialogComponent } from './record-dialog/record-dialog.component';
 
 // Services
 import { AuthService } from './auth.service';
@@ -27,6 +28,7 @@ import { ActivityService } from './activity.service';
 import { MetricService } from './metric.service';
 
 import { InMemoryDataService } from './in-memory-data.service';
+import { RecordComponent } from './record/record.component';
 
 
 @NgModule({
@@ -38,10 +40,13 @@ import { InMemoryDataService } from './in-memory-data.service';
     NavbarComponent,
     FiltersComponent,
     DayComponent,
+    RecordDialogComponent,
+    RecordComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     AppRoutingModule,
     MatModule,
@@ -58,5 +63,6 @@ import { InMemoryDataService } from './in-memory-data.service';
     MetricService,
   ],
   bootstrap: [AppComponent],
+  entryComponents: [RecordDialogComponent]
 })
 export class AppModule { }
