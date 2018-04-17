@@ -1,9 +1,9 @@
-export class Activity {
+export class Record {
   id: number;
   day: number;
   child: number;
-  category: string;
-  duration: number;
+  descriptor: string;
+  value: number;
 }
 
 export const ActivityCategories = [
@@ -12,4 +12,9 @@ export const ActivityCategories = [
   'Academics',
   'Sleep',
   'Electronics',
+];
+
+export const MetricNames = [
+  'Mood',
+  'Energy',
 ];

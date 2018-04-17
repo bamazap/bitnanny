@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivityCategories } from '../activity';
-import { MetricNames } from '../metric';
+import { ActivityCategories } from '../record';
+import { MetricNames } from '../record';
 
 @Component({
   selector: 'app-filters',

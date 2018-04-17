@@ -3,9 +3,9 @@
   <div
     fxLayout='column'
     fxLayoutAlign='start center' class='day-content' fxFlex='1 1 auto'>
-    <div *ngFor='let activity of activities' class='activity'>
-      <app-record [record]='activity'></app-record>
+    <div *ngFor='let record of records' class='record'>
+      <app-record [record]='record'></app-record>
     </div>
-    <mat-icon class='new-activity'>add_circle</mat-icon>
+    <mat-icon class='new-record'>add_circle</mat-icon>
   </div>
 </div>

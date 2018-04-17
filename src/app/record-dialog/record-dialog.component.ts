@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
+import { Record } from '../record';
+
 
 @Component({
   selector: 'app-record-dialog',
@@ -11,22 +13,22 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class RecordDialogComponent implements OnInit {
   form: FormGroup;
-  description: string;
-  number: number;
+  descriptor: string;
+  value: number;
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<RecordDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data
+    @Inject(MAT_DIALOG_DATA) data: Record
   ) {
-    this.description = data.description;
-    this.number = data.number;
+    this.descriptor = data.descriptor;
+    this.value = data.value;
   }
 
   ngOnInit() {
     this.form = this.fb.group({
-      description: [this.description, []],
-      number: [this.number, []],
+      descriptor: [this.descriptor, []],
+      value: [this.value, []],
     });
   }
 

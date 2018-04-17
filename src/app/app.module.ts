@@ -20,15 +20,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FiltersComponent } from './filters/filters.component';
 import { DayComponent } from './day/day.component';
 import { RecordDialogComponent } from './record-dialog/record-dialog.component';
+import { RecordComponent } from './record/record.component';
 
 // Services
 import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
-import { ActivityService } from './activity.service';
-import { MetricService } from './metric.service';
+import { RecordService } from './record.service';
 
 import { InMemoryDataService } from './in-memory-data.service';
-import { RecordComponent } from './record/record.component';
 
 
 @NgModule({
@@ -59,8 +58,7 @@ import { RecordComponent } from './record/record.component';
   providers: [
     AuthService,
     MessageService,
-    ActivityService,
-    MetricService,
+    RecordService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [RecordDialogComponent]

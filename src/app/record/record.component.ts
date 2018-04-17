@@ -5,10 +5,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import {
   RecordDialogComponent,
 } from '../record-dialog/record-dialog.component';
-import { ActivityService } from '../activity.service';
+import { RecordService } from '../record.service';
 
-import { Activity } from '../activity';
-import { Metric } from '../metric';
+import { Record } from '../record';
+
 
 @Component({
   selector: 'app-record',
@@ -16,16 +16,14 @@ import { Metric } from '../metric';
   styleUrls: ['./record.component.css']
 })
 export class RecordComponent implements OnInit {
-  @Input() record: Activity | Metric;
+  @Input() record: Record;
 
   constructor(
     private dialog: MatDialog,
-    private activityService: ActivityService
+    private recordService: RecordService
   ) { }
 
   ngOnInit() {
-    this.record['number'] = this.record['duration'] || this.record['rating'];
-    this.record['description'] = this.record['category'] || this.record['name'];
   }
 
   openDialog() {
@@ -35,12 +33,10 @@ export class RecordComponent implements OnInit {
 
     this.dialog.open(RecordDialogComponent, dialogConfig)
       .afterClosed().subscribe(data => {
-        this.record['duration'] = data.number;
-        this.record['category'] = data.description;
-        this.activityService.updateActivity(<Activity>this.record)
+        this.recordService.updateRecord(<Record>this.record)
           .subscribe(() => {
-            this.record['number'] = data.number;
-            this.record['description'] = data.description;
+            this.record.value = data.value;
+            this.record.descriptor = data.descriptor;
           });
       });
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 
-import { Activity } from '../activity';
-import { ActivityService } from '../activity.service';
+import { Record } from '../record';
+import { RecordService } from '../record.service';
 import { unixDays } from '../../utils';
 
 const days = [
@@ -37,21 +37,21 @@ const months = [
 export class DayComponent implements OnInit {
   @Input() daysBack: number;
   day = '';
-  activities: Activity[] = [];
+  records: Record[] = [];
 
-  constructor(private activityService: ActivityService) { }
+  constructor(private recordService: RecordService) { }
 
   ngOnInit() {
     const d = new Date();
     d.setDate(d.getDate() - this.daysBack);
     this.day = `${days[d.getDay()].slice(0, 3)} ${d.getDate()}`;
-    this.getActivities();
+    this.getRecords();
   }
 
-  getActivities() {
+  getRecords() {
     const dayNumber = unixDays(new Date().getTime()) - this.daysBack;
-    this.activityService.getActivitiesByDay(dayNumber)
-      .subscribe(activities => this.activities = activities);
+    this.recordService.getRecordsByDay(dayNumber)
+      .subscribe(records => this.records = records);
   }
 
 }
