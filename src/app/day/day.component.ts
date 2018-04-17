@@ -56,7 +56,7 @@ export class DayComponent implements OnInit {
       .subscribe(records => this.records = records);
   }
 
-  onAdd(record: Record) {
+  afterAdd(record: Record) {
     this.records.push(record);
   }
 

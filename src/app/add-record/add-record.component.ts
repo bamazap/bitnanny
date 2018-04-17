@@ -16,7 +16,7 @@ import { Record, RecordNoID } from '../record';
 })
 export class AddRecordComponent implements OnInit {
   @Input() day: number;
-  @Output() onAdd = new EventEmitter<Record>();
+  @Output() afterAdd = new EventEmitter<Record>();
 
   constructor(
     private dialog: MatDialog,
@@ -25,7 +25,7 @@ export class AddRecordComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -35,7 +35,7 @@ export class AddRecordComponent implements OnInit {
       .afterClosed().subscribe(data => {
         if (data) {
           this.recordService.createRecord(data)
-            .subscribe(record => this.onAdd.emit(record));
+            .subscribe(record => this.afterAdd.emit(record));
         }
       });
   }

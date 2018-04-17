@@ -2,35 +2,26 @@
 
 6.813/6.831M Final Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
-
 ## Authors
 
-Francis Soucy
-Kevin Li
-Barry McNamara
-Ignacio Fernandez
+* Francis Soucy
+  * [fsoucy](https://github.com/fsoucy)
+  * [fsoucy@mit.edu](mailto:fsoucy@mit.edu?Subject=bitNanny)
+* Kevin Li
+  * [xaelleone](https://github.com/xaelleone)
+  * [kmli@mit.edu](mailto:kmli@mit.edu?Subject=bitNanny)
+* Barry McNamara
+  * [bamazap](https://github.com/bamazap)
+  * [barryam3@mit.edu](mailto:barryam3@mit.edu?Subject=bitNanny)
+* Ignacio Fernandez
+  * [ignacio-fernandez](https://github.com/ignacio-fernandez)
+  * [ifndez@mit.edu](mailto:ifndez@mit.edu?Subject=bitNanny)
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Deploying to Athena
+Run `./build_and_deploy.sh yourkerb` to build the project. The script will then ask for your Athena password so the files can be sent to your Athena locker. The app will be live at `http://web.mit.edu/yourkerb/www/bitnanny`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Do not refresh the page because the Athena server will lose track of the files.
