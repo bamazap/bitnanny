@@ -1,7 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+
+import { NeutronRatingModule } from 'neutron-star-rating';
 
 import { Record, ActivityCategories, MetricNames } from '../record';
 
@@ -54,5 +56,9 @@ export class RecordDialogComponent implements OnInit {
 
   radioChange(_evt) {
     this.form.patchValue({ descriptor: null, value: null });
+  }
+
+  onRatingClicked(ratingNum) {
+    this.form.patchValue({ value: ratingNum });
   }
 }

@@ -29,6 +29,7 @@
     "core-js": "^2.4.1",
     "flex-layout-srcs": "github:angular/flex-layout",
     "hammerjs": "^2.0.8",
+    "neutron-star-rating": "^0.1.0",
     "npm": "^5.8.0",
     "plotly.js": "^1.36.0",
     "rxjs": "^5.5.6",

@@ -2,6 +2,20 @@
   text-align: center;
 }
 
-mat-form-field {
+mat-form-field, .mat-form-field {
   width: 100%;
 }
+
+neutron-rating {
+  position: absolute;
+  left: 55px;
+  top: -10px;
+  z-index: 99;
+}
+
+#fakeInput {
+  opacity: 0;
+}
+
+/* the placeholder for fakeInput is forced to be shown in global styles */
+/* stars are given dark borders in global styles */

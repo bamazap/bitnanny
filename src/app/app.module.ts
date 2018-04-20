@@ -11,6 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 // Angular Material
 import { MatModule } from './mat/mat.module';
 
+// Other Third-Party Modules
+import { NeutronRatingModule } from 'neutron-star-rating';
+
 // Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +24,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { DayComponent } from './day/day.component';
 import { RecordDialogComponent } from './record-dialog/record-dialog.component';
 import { RecordComponent } from './record/record.component';
+import { AddRecordComponent } from './add-record/add-record.component';
 
 // Services
 import { AuthService } from './auth.service';
@@ -29,7 +33,6 @@ import { RecordService } from './record.service';
 import { FilterService } from './filter.service';
 
 import { InMemoryDataService } from './in-memory-data.service';
-import { AddRecordComponent } from './add-record/add-record.component';
 
 
 @NgModule({
@@ -52,6 +55,7 @@ import { AddRecordComponent } from './add-record/add-record.component';
     FlexLayoutModule,
     AppRoutingModule,
     MatModule,
+    NeutronRatingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService,

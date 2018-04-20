@@ -45,11 +45,18 @@
       step="0.5"
     >
   </mat-form-field>
-  <mat-form-field *ngIf="recordType === 'Metric'">
+  <mat-form-field *ngIf="recordType === 'Metric'" floatLabel="never">
+    <neutron-rating
+      [rating]='4'
+      [starColour]="gold"
+      [starSize]="2"
+      (ratingClicked)='onRatingClicked($event)'
+    ></neutron-rating>
     <input matInput
-      placeholder="Rating (stars)"
+      placeholder="Rating" 
       formControlName="value"
-      type="number"
+      id='fakeInput'
+      readonly
     >
   </mat-form-field>
 
