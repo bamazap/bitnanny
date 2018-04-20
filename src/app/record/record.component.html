@@ -1,4 +1,4 @@
-<mat-card (click)="openDialog()">
+<mat-card (click)="openDialog()" [ngClass]="record.child">
   <mat-card-header>
     <mat-card-title>
       <div class='descriptor'>{{ record.descriptor }}</div>
