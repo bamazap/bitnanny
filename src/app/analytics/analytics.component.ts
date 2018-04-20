@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Plotly from 'plotly.js';
 import {Config, Data, Layout} from 'plotly.js';
+import { FilterService } from '../filter.service';
+import { Filter } from '../filter';
 
 
 @Component({
@@ -10,10 +12,10 @@ import {Config, Data, Layout} from 'plotly.js';
 })
 export class AnalyticsComponent implements OnInit {
 
-
   currentChild = 'Bryan';
   currentActivity = 'Sleep';
   currentMetric = 'Mood';
+  show = false;
 
   data = {
     Bryan: {
@@ -29,7 +31,7 @@ export class AnalyticsComponent implements OnInit {
   activityToLabel = {Sleep: 'Hours of Sleep'};
   metricToLabel = {Mood: 'Mood'};
 
-
+  constructor(private filterService: FilterService) { }
 
   getPlotData(child, activity, metric) {
     const currentX = this.data[child][activity][metric].x;
@@ -62,7 +64,9 @@ export class AnalyticsComponent implements OnInit {
   return layout;
   }
 
-  constructor() { }
+  decideVisibility(filter: Filter): boolean {
+    return !!(filter.child && filter.activity && filter.metric);
+  }
 
   ngOnInit() {
     const data = this.getPlotData(
@@ -75,6 +79,14 @@ export class AnalyticsComponent implements OnInit {
       this.currentActivity,
       this.currentMetric
     );
+    this.filterService.readFilter().subscribe((filter) => {
+      this.show = this.decideVisibility(filter);
+    });
+    this.filterService.changeBroadcast$.subscribe(() => {
+      this.filterService.readFilter().subscribe((filter) => {
+        this.show = this.decideVisibility(filter);
+      });
+    });
     Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
   }
 

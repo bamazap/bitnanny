@@ -15,3 +15,11 @@
 circle {
     fill: steelblue;
 }
+
+#myDiv.hide {
+  visibility: hidden;
+}
+
+.message {
+  text-align: center;
+}
