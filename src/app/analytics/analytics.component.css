@@ -2,6 +2,10 @@
     font: 10px sans-serif;	
 }
 
+.modebar {
+    display: none;
+}
+
 .axis line, .axis path {
     shape-rendering: crispEdges;
     stroke: black;
