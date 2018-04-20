@@ -1,5 +1,0 @@
-<div class='content'>
-  <h3 id='hello'>{{Title}}</h3>
-  <input type='text' [(ngModel)]="text">
-  <button (click)='handleClick()'>Click me</button>
-</div>

@@ -29,17 +29,17 @@ export class AnalyticsComponent implements OnInit {
 
 
   getPlotData(child, activity, metric) {
-	var currentX = this.data[child][activity][metric].x;
-	var currentY = this.data[child][activity][metric].y;
-	var trace = {
-		x: currentX,
-		y: currentY,
-		mode: 'markers',
-		type: 'scatter',
-		marker: {size: 16, color: 'purple'}
-	};
-	var data = [trace];
-	return data;
+  	var currentX = this.data[child][activity][metric].x;
+  	var currentY = this.data[child][activity][metric].y;
+  	var trace: any = {
+  		x: currentX,
+  		y: currentY,
+  		mode: 'markers',
+  		type: 'scatter',
+  		marker: {size: 16, color: 'purple'}
+  	};
+  	var data = [trace];
+  	return data;
   }
 
   getPlotLayout(child, activity, metric) {
@@ -55,9 +55,9 @@ export class AnalyticsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-	var data = this.getPlotData(this.currentChild, this.currentActivity, this.currentMetric);
-	var layout = this.getPlotLayout(this.currentChild, this.currentActivity, this.currentMetric);
-	Plotly.newPlot('myDiv', data, layout);
+  	var data = this.getPlotData(this.currentChild, this.currentActivity, this.currentMetric);
+  	var layout = this.getPlotLayout(this.currentChild, this.currentActivity, this.currentMetric);
+  	Plotly.newPlot('myDiv', data, layout);
   }
 
 }
