@@ -1,6 +1,6 @@
 <div fxLayoutAlign='space-between' id='filters'>
   <mat-form-field fxFlex='1 1 auto' class='filter'>
-    <mat-select placeholder="Child">
+    <mat-select placeholder="Child" [(value)]="selectedChild" (change)="updateFilter()">
       <mat-option>
         <span class='select-none'>Any</span>
       </mat-option>
@@ -11,7 +11,7 @@
   </mat-form-field>
 
   <mat-form-field fxFlex='1 1 auto' class='filter'>
-    <mat-select placeholder="Activity">
+    <mat-select placeholder="Activity" [(value)]="selectedActivity" (change)="updateFilter()">
       <mat-option>
         <span class='select-none'>Any</span>
       </mat-option>
@@ -22,7 +22,7 @@
   </mat-form-field>
 
   <mat-form-field fxFlex='1 1 auto' class='filter'>
-    <mat-select placeholder="Metric">
+    <mat-select placeholder="Metric" [(value)]="selectedMetric" (change)="updateFilter()">
       <mat-option>
         <span class='select-none'>Any</span>
       </mat-option>

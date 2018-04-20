@@ -55,5 +55,4 @@ export class RecordDialogComponent implements OnInit {
   radioChange() {
     this.form.patchValue({ descriptor: null, value: null });
   }
-
 }

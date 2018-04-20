@@ -11,12 +11,12 @@ import {Config, Data, Layout} from 'plotly.js';
 export class AnalyticsComponent implements OnInit {
 
 
-  currentChild = 'Brian';
+  currentChild = 'Bryan';
   currentActivity = 'Sleep';
   currentMetric = 'Mood';
 
   data = {
-    Brian: {
+    Bryan: {
       Sleep: {
         Mood: {
           x: [7, 3, 8, 5, 10, 9, 8, 4, 5, 6],

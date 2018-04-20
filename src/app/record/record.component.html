@@ -1,4 +1,4 @@
-<mat-card (click)="openDialog()" [ngClass]="record.child">
+<mat-card *ngIf="show"(click)="openDialog()" [ngClass]="record.child">
   <mat-card-content fxLayout='row' fxLayoutAlign='space-between center'>
     <div class='text'>
       <div class='descriptor'>{{ record.descriptor }}</div>
