@@ -30,6 +30,7 @@ export class AddRecordComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.data = new RecordNoID();
+    dialogConfig.data.day = this.day;
 
     this.dialog.open(RecordDialogComponent, dialogConfig)
       .afterClosed().subscribe(data => {

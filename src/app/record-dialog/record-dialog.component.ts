@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
@@ -12,6 +12,7 @@ import { Record, ActivityCategories, MetricNames } from '../record';
   styleUrls: ['./record-dialog.component.css']
 })
 export class RecordDialogComponent implements OnInit {
+
   form: FormGroup;
   descriptor: string;
   value: number;
@@ -35,10 +36,10 @@ export class RecordDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      descriptor: [this.descriptor, []],
-      value: [this.value, []],
-      child: [this.child, []],
-      day: [this.day, []],
+      descriptor: [this.descriptor, [Validators.required]],
+      value: [this.value, [Validators.required]],
+      child: [this.child, [Validators.required]],
+      day: [this.day, [Validators.required]],
     });
   }
 
@@ -50,4 +51,12 @@ export class RecordDialogComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
+<<<<<<< HEAD
+=======
+
+  radioChange() {
+    this.form.patchValue({ descriptor: null, value: null });
+  }
+
+>>>>>>> 65353ba197064f15be011993a1c70b50bff213de
 }

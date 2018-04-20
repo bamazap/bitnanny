@@ -38,19 +38,15 @@ export class FiltersComponent implements OnInit {
 
   createFilterObj () {
     const filter = new Filter();
-    filter.child = this.selectedChild ? this.children[this.selectedChild].name : '';
-    filter.activity = this.selectedActivity ? this.activities[this.selectedActivity].name.toLowerCase() : '';
-    filter.metric = this.selectedMetric ? this.metrics[this.selectedMetric].name.toLowerCase() : '';
+    filter.child = typeof this.selectedChild === 'number' ? this.children[this.selectedChild].name : '';
+    filter.activity = typeof this.selectedActivity === 'number' ? this.activities[this.selectedActivity].name : '';
+    filter.metric = typeof this.selectedMetric === 'number' ? this.metrics[this.selectedMetric].name : '';
     return filter;
   }
 
   updateFilter() {
     this.filterService.updateFilter(<Filter>this.createFilterObj());
     this.filterService.broadcastChange();
-  }
-
-  onChange() {
-    console.log('blah');
   }
   // filterChanged(@Inject(MAT_DIALOG_DATA) data: Record) {
   //   this.filterService.updateFilter()

@@ -34,7 +34,6 @@ export class FilterService {
   }
 
   updateFilter(filter: Filter): Observable<any> {
-    console.log(filter);
     this.filter = filter;
     return null;
   }
