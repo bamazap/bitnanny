@@ -39,6 +39,7 @@ export class RecordComponent implements OnInit {
               this.record.value = data.value;
               this.record.child = data.child; 
               this.record.descriptor = data.descriptor;
+              this.record.type = data.type;
             });
         }
       });

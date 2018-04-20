@@ -1,7 +1,8 @@
 mat-card {
-  background-color: lightgray;
+  background-color: #d4abe8;
   border-radius: 5%;
   padding: 5px;
+  color: #041144;
 }
 
 mat-card:hover {
@@ -13,7 +14,11 @@ mat-card-header {
   justify-content: center;
 }
 
-mat-card-title {
+.descriptor {
   font-size: 1.5em;
   font-weight: bold;
+}
+
+.type {
+  font-style: italic;
 }
