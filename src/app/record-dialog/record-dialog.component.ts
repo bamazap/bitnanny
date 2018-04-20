@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
-import { Record } from '../record';
+import { Record, ActivityCategories, MetricNames } from '../record';
 
 
 @Component({
@@ -18,6 +18,8 @@ export class RecordDialogComponent implements OnInit {
   child: string;
   day: number;
   recordType: string;
+  activityCategories = ActivityCategories;
+  metricNames = MetricNames;
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +30,7 @@ export class RecordDialogComponent implements OnInit {
     this.value = data.value;
     this.child = data.child;
     this.day = data.day;
+    this.recordType = data.type;
   }
 
   ngOnInit() {

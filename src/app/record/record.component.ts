@@ -37,7 +37,7 @@ export class RecordComponent implements OnInit {
           this.recordService.updateRecord(<Record>this.record)
             .subscribe(() => {
               this.record.value = data.value;
-              this.record.child = data.child; 
+              this.record.child = data.child;
               this.record.descriptor = data.descriptor;
               this.record.type = data.type;
             });

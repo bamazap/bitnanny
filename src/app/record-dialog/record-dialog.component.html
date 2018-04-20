@@ -5,21 +5,42 @@
   </mat-radio-group>
 </div>
 
-<mat-dialog-content [formGroup]="form">
+<mat-dialog-content *ngIf="recordType" [formGroup]="form">
+  <mat-form-field>
+    <mat-select
+      *ngIf="recordType === 'activity'"
+      placeholder="Category"
+      formControlName="descriptor"
+    >
+      <mat-option
+        *ngFor="let category of activityCategories"
+        [value]="category"
+      >
+        {{ category }}
+      </mat-option>
+    </mat-select>
+    <mat-select
+      *ngIf="recordType === 'metric'"
+      placeholder="Evaluation"
+      formControlName="descriptor"
+    >
+      <mat-option
+        *ngFor="let metric of metricNames"
+        [value]="metric"
+      >
+        {{ metric }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <mat-form-field>
     <input
       matInput
-      placeholder="{{recordType === 'activity' ? 'Category' : 'Name'}}"
-      formControlName="descriptor"
+      placeholder="{{recordType === 'activity' ? 'Duration' : 'Rating'}}"
+      formControlName="value"
     >
   </mat-form-field>
-  <mat-form-field>
-      <input
-        matInput
-        placeholder="{{recordType === 'activity' ? 'Duration' : 'Rating'}}"
-        formControlName="value"
-      >
-  </mat-form-field>
+
   <mat-form-field>
     <input
       matInput
