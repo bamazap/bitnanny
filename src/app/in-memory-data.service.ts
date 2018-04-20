@@ -13,10 +13,12 @@ function withType<T>(obj: T, type: RecordType): T & { type: RecordType} {
   return <T & { type: RecordType }>obj;
 }
 
+const intToChild = {0: "Bryan", 1: "Emily"}; 
+
 function generateSleep(nDays: number): RecordNoID[] {
   return [].concat(...range(2).map(child => range(nDays).map((day) => {
     const value = randint(6, 9) + 0.5 * randint(-1, 1);
-    return {day, child, descriptor: 'sleep', value, type: RecordType.activity};
+    return {day, child: intToChild[child], descriptor: 'sleep', value, type: RecordType.activity};
   })));
 }
 
@@ -32,12 +34,12 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     // day means number of days ago (so we get the same load each time)
     const activities: Record[] = generateSleep(14).concat([
-      { day: 1, child: 1, descriptor: 'arts', value: 1 },
-      { day: 8, child: 1, descriptor: 'arts', value: 1 },
-      { day: 2, child: 0, descriptor: 'athletics', value: 1.5 },
-      { day: 4, child: 0, descriptor: 'athletics', value: 1.5 },
-      { day: 9, child: 0, descriptor: 'athletics', value: 1.5 },
-      { day: 8, child: 0, descriptor: 'electronics', value: 3 },
+      { day: 1, child: "Bryan", descriptor: 'arts', value: 1 },
+      { day: 8, child: "Bryan", descriptor: 'arts', value: 1 },
+      { day: 2, child: "Emily", descriptor: 'athletics', value: 1.5 },
+      { day: 4, child: "Emily", descriptor: 'athletics', value: 1.5 },
+      { day: 9, child: "Emily", descriptor: 'athletics', value: 1.5 },
+      { day: 8, child: "Emily", descriptor: 'electronics', value: 3 },
     ].map(r => withType(r, RecordType.activity))).map(withID);
     const metrics: Record[] = generateMood(14).map(withID);
     const records = activities.concat(metrics);
