@@ -34,12 +34,20 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     // day means number of days ago (so we get the same load each time)
     const activities: Record[] = generateSleep(14).concat([
-      { day: 1, child: 'Bryan', descriptor: 'Arts', value: 1 },
-      { day: 8, child: 'Bryan', descriptor: 'Arts', value: 1 },
-      { day: 2, child: 'Emily', descriptor: 'Athletics', value: 1.5 },
-      { day: 4, child: 'Emily', descriptor: 'Athletics', value: 1.5 },
-      { day: 9, child: 'Emily', descriptor: 'Athletics', value: 1.5 },
-      { day: 8, child: 'Emily', descriptor: 'Electronics', value: 3 },
+      { day: 1, child: 'Emily', descriptor: 'Arts', value: 1 },
+      { day: 8, child: 'Emily', descriptor: 'Arts', value: 1 },
+      { day: 12, child: 'Emily', descriptor: 'Arts', value: 1 },
+      { day: 2, child: 'Bryan', descriptor: 'Athletics', value: 1.5 },
+      { day: 4, child: 'Emily', descriptor: 'Athletics', value: 2 },
+      { day: 9, child: 'Bryan', descriptor: 'Athletics', value: 1.5 },
+      { day: 11, child: 'Emily', descriptor: 'Athletics', value: 1 },
+      { day: 11, child: 'Bryan', descriptor: 'Athletics', value: 1 },
+      { day: 2, child: 'Bryan', descriptor: 'Electronics', value: 2 },
+      { day: 2, child: 'Emily', descriptor: 'Electronics', value: 2 },
+      { day: 5, child: 'Bryan', descriptor: 'Electronics', value: 1 },
+      { day: 8, child: 'Bryan', descriptor: 'Electronics', value: 4 },
+      { day: 10, child: 'Bryan', descriptor: 'Electronics', value: 1.5 },
+      { day: 13, child: 'Bryan', descriptor: 'Electronics', value: 2 },
     ].map(r => withType(r, RecordType.activity))).map(withID);
     const metrics: Record[] = generateMood(14).map(withID);
     const records = activities.concat(metrics);
