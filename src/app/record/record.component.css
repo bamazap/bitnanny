@@ -29,6 +29,11 @@ mat-card-content {
   justify-content: center;
 }
 
+.text {
+  margin-right: 10px;
+  text-align: left;
+}
+
 .value {
   height: 50px;
   width: 50px;
@@ -40,10 +45,6 @@ mat-card-content {
 .descriptor {
   font-size: 1.5em;
   font-weight: bold;
-}
-
-.type {
-  font-style: italic;
 }
 
 .star {
