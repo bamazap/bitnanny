@@ -16,7 +16,7 @@ export enum RecordType {
 }
 
 export const ActivityCategories = [
-  'Athletics',
+  'Exercise',
   'Arts',
   'Academics',
   'Sleep',
