@@ -1,7 +1,8 @@
 mat-card {
-  background-color: lightgray;
+  background-color: #d4abe8;
   border-radius: 5%;
   padding: 5px;
+  color: #041144;
 }
 
 mat-card:hover {
