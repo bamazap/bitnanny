@@ -3,6 +3,7 @@ mat-card {
   border-radius: 5%;
   padding: 5px;
   color: #041144;
+  margin: 5px 0;
 }
 mat-card.Bryan {
   background-color: #99ccff;
