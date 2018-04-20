@@ -3,11 +3,17 @@ export class RecordNoID {
   child: number;
   descriptor: string;
   value: number;
+  type: RecordType;
 }
 
 export class Record extends RecordNoID {
   id: number;
 }
+
+export enum RecordType {
+  activity = 'activity',
+  metric = 'metric',
+};
 
 export const ActivityCategories = [
   'Athletics',

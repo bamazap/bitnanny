@@ -38,6 +38,7 @@ export class RecordComponent implements OnInit {
             .subscribe(() => {
               this.record.value = data.value;
               this.record.descriptor = data.descriptor;
+              this.record.type = data.type;
             });
         }
       });

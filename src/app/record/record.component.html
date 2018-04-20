@@ -1,7 +1,8 @@
 <mat-card (click)="openDialog()">
   <mat-card-header>
     <mat-card-title>
-      {{ record.descriptor }}
+      <div class='descriptor'>{{ record.descriptor }}</div>
+      <div class='type'>{{ record.type }}</div>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>

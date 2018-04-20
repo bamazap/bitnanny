@@ -1,28 +1,35 @@
+<div mat-dialog-title id='title'>
+  <mat-radio-group [(ngModel)]="recordType">
+    <mat-radio-button value="activity">Activity</mat-radio-button>
+    <mat-radio-button value="metric">Metric</mat-radio-button>
+  </mat-radio-group>
+</div>
+
 <mat-dialog-content [formGroup]="form">
-    <mat-form-field>
-        <input
-          matInput
-          placeholder="Category or Name"
-          formControlName="descriptor"
-        >
-    </mat-form-field>
-    <mat-form-field>
-        <input
-          matInput
-          placeholder="Duration or Rating"
-          formControlName="value"
-        >
-    </mat-form-field>
-    <mat-form-field>
-        <input
-          matInput
-          placeholder="Child"
-          formControlName="child"
-        >
-    </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="{{recordType === 'activity' ? 'Category' : 'Name'}}"
+      formControlName="descriptor"
+    >
+  </mat-form-field>
+  <mat-form-field>
+      <input
+        matInput
+        placeholder="{{recordType === 'activity' ? 'Duration' : 'Rating'}}"
+        formControlName="value"
+      >
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Child"
+      formControlName="child"
+    >
+  </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="mat-raised-button" (click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
 </mat-dialog-actions>
