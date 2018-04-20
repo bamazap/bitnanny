@@ -11,8 +11,8 @@ export class Record extends RecordNoID {
 }
 
 export enum RecordType {
-  activity = 'activity',
-  metric = 'metric',
+  activity = 'Activity',
+  metric = 'Metric',
 }
 
 export const ActivityCategories = [

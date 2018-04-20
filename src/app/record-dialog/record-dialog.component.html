@@ -1,14 +1,14 @@
 <div mat-dialog-title id='title'>
   <mat-radio-group [(ngModel)]="recordType">
-    <mat-radio-button value="activity">Activity</mat-radio-button>
-    <mat-radio-button value="metric">Metric</mat-radio-button>
+    <mat-radio-button value="Activity">Activity</mat-radio-button>
+    <mat-radio-button value="Metric">Metric</mat-radio-button>
   </mat-radio-group>
 </div>
 
 <mat-dialog-content *ngIf="recordType" [formGroup]="form">
   <mat-form-field>
     <mat-select
-      *ngIf="recordType === 'activity'"
+      *ngIf="recordType === 'Activity'"
       placeholder="Category"
       formControlName="descriptor"
     >
@@ -20,7 +20,7 @@
       </mat-option>
     </mat-select>
     <mat-select
-      *ngIf="recordType === 'metric'"
+      *ngIf="recordType === 'Metric'"
       placeholder="Evaluation"
       formControlName="descriptor"
     >
@@ -36,7 +36,7 @@
   <mat-form-field>
     <input
       matInput
-      placeholder="{{recordType === 'activity' ? 'Duration' : 'Rating'}}"
+      placeholder="{{recordType === 'Activity' ? 'Duration' : 'Rating'}}"
       formControlName="value"
     >
   </mat-form-field>
