@@ -20,6 +20,14 @@ function generateSleep(nDays: number): RecordNoID[] {
   })));
 }
 
+function generateMood(nDays: number): RecordNoID[] {
+  return [].concat(...range(2).map(childID => range(nDays).map((day) => {
+    const value = randint(1, 5);
+    const child = childID === 1 ? 'Bryan' : 'Emily';
+    return {day, child, descriptor: 'sleep', value, type: RecordType.metric};
+  })));
+}
+
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     // day means number of days ago (so we get the same load each time)
@@ -31,10 +39,10 @@ export class InMemoryDataService implements InMemoryDbService {
       { day: 9, child: 0, descriptor: 'athletics', value: 1.5 },
       { day: 8, child: 0, descriptor: 'electronics', value: 3 },
     ].map(r => withType(r, RecordType.activity))).map(withID);
-    const metrics: Record[] = [];
+    const metrics: Record[] = generateMood(14).map(withID);
     const records = activities.concat(metrics);
     // convert day to unixDays
-    activities.forEach((record) => {
+    records.forEach((record) => {
       record.day = unixDays(new Date().getTime()) - record.day;
     });
     return { records };

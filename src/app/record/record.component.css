@@ -12,6 +12,23 @@ mat-card:hover {
 
 mat-card-header {
   justify-content: center;
+  margin-bottom: 5px;
+}
+
+mat-card-title {
+  margin-bottom: 0;
+}
+
+mat-card-content {
+  justify-content: center;
+}
+
+.value {
+  height: 50px;
+  width: 50px;
+  background-color: lightgray;
+  border-radius: 50%;
+  margin-bottom: 5px;
 }
 
 .descriptor {
@@ -22,3 +39,11 @@ mat-card-header {
 .type {
   font-style: italic;
 }
+
+.star {
+  color: gold;
+  font-size: 18px;
+  padding-top: 6px;
+  text-shadow: 0px 0px 3px #000;
+}
+

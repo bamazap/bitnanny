@@ -13,7 +13,7 @@ export class Record extends RecordNoID {
 export enum RecordType {
   activity = 'activity',
   metric = 'metric',
-};
+}
 
 export const ActivityCategories = [
   'Athletics',

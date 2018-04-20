@@ -5,8 +5,17 @@
       <div class='type'>{{ record.type }}</div>
     </mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <div class='duration'>{{ record.value }}</div>
+  <mat-card-content fxLayout='column' fxLayoutAlign='center center'>
+      <div fxLayoutAlign='center center' class='value'>
+        <span>{{ record.value }}</span>
+        <span>&nbsp;</span>
+        <span *ngIf="record.type === 'activity'" class='hour'>
+          {{ record.value !== 1 ? 'hrs' : 'hr'}}
+        </span>
+        <span *ngIf="record.type === 'metric'">
+          <mat-icon class='star'>star</mat-icon>
+        </span>
+      </div>
     <div class='children'>{{ record.child }}</div>
   </mat-card-content>
 </mat-card>

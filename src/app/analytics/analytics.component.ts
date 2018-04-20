@@ -34,7 +34,7 @@ export class AnalyticsComponent implements OnInit {
   getPlotData(child, activity, metric) {
     const currentX = this.data[child][activity][metric].x;
     const currentY = this.data[child][activity][metric].y;
-    const revY = currentY.map(i => 5-i);
+    const revY = currentY.map(i => 5 - i);
     const trace: any = {
       x: currentX,
       y: currentY,
