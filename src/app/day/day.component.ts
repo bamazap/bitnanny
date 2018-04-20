@@ -47,7 +47,6 @@ export class DayComponent implements OnInit {
     d.setDate(d.getDate() - this.daysBack);
     this.dayText = `${days[d.getDay()].slice(0, 3)} ${d.getDate()}`;
     this.dayNumber = unixDays(new Date().getTime()) - this.daysBack;
-
     this.getRecords();
   }
 

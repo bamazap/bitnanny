@@ -9,10 +9,10 @@
       <div fxLayoutAlign='center center' class='value'>
         <span>{{ record.value }}</span>
         <span>&nbsp;</span>
-        <span *ngIf="record.type === 'activity'" class='hour'>
+        <span *ngIf="record.type === 'Activity'" class='hour'>
           {{ record.value !== 1 ? 'hrs' : 'hr'}}
         </span>
-        <span *ngIf="record.type === 'metric'">
+        <span *ngIf="record.type === 'Metric'">
           <mat-icon class='star'>star</mat-icon>
         </span>
       </div>
