@@ -15,8 +15,9 @@ export class RecordDialogComponent implements OnInit {
   form: FormGroup;
   descriptor: string;
   value: number;
-  child: number;
+  child: string;
   day: number;
+  recordType: string;
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +40,8 @@ export class RecordDialogComponent implements OnInit {
   }
 
   save() {
-    this.dialogRef.close(this.form.value);
+    const data: any = { type: this.recordType };
+    this.dialogRef.close(Object.assign( data, this.form.value));
   }
 
   close() {
