@@ -26,4 +26,5 @@ export const ActivityCategories = [
 export const MetricNames = [
   'Mood',
   'Energy',
+  'Academic Performance'
 ];
