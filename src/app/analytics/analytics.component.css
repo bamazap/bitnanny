@@ -2,7 +2,7 @@
     font: 10px sans-serif;	
 }
 
-.modebar {
+.modebar, .modebar hover {
     display: none;
 }
 

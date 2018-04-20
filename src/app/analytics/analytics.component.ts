@@ -74,7 +74,7 @@ export class AnalyticsComponent implements OnInit {
       this.currentActivity,
       this.currentMetric
     );
-    Plotly.newPlot('myDiv', data, layout);
+    Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
   }
 
 }
