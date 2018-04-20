@@ -28,6 +28,9 @@ export class RecordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.filterService.readFilter().subscribe((filter) => {
+      this.show = this.decideVisibility(filter);
+    });
     this.filterService.changeBroadcast$.subscribe(() => {
       this.filterService.readFilter().subscribe((filter) => {
         this.show = this.decideVisibility(filter);
