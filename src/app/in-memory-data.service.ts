@@ -26,7 +26,7 @@ function generateMood(nDays: number): RecordNoID[] {
   return [].concat(...range(2).map(childID => range(nDays).map((day) => {
     const value = randint(1, 5);
     const child = childID === 1 ? 'Bryan' : 'Emily';
-    return {day, child, descriptor: 'Sleep', value, type: RecordType.metric};
+    return {day, child, descriptor: 'Mood', value, type: RecordType.metric};
   })));
 }
 
