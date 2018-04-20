@@ -34,12 +34,13 @@ export class AnalyticsComponent implements OnInit {
   getPlotData(child, activity, metric) {
     const currentX = this.data[child][activity][metric].x;
     const currentY = this.data[child][activity][metric].y;
+    const revY = currentY.map(i => 5-i);
     const trace: any = {
       x: currentX,
       y: currentY,
       mode: 'markers',
       type: 'scatter',
-      marker: {size: 16, color: 'purple'}
+      marker: {size: 16, color: revY, colorscale: 'Picnic'}
     };
     const data = [trace];
     return data;
@@ -48,14 +49,14 @@ export class AnalyticsComponent implements OnInit {
   getPlotLayout(child, activity, metric) {
     const layout = {
     title: activity + ' vs. ' + metric + ' for ' + child,
-    titlefont: { size: 18, color: 'purple'},
+    titlefont: { size: 18, color: 'black'},
     xaxis: {
       title: this.activityToLabel[activity],
-      titlefont: {size: 16, color: 'purple'}
+      titlefont: {size: 16, color: 'black'}
     },
     yaxis: {
       title: this.metricToLabel[metric],
-      titlefont: {size: 16, color: 'purple'}
+      titlefont: {size: 16, color: 'black'}
     },
   };
   return layout;
@@ -74,7 +75,7 @@ export class AnalyticsComponent implements OnInit {
       this.currentActivity,
       this.currentMetric
     );
-    Plotly.newPlot('myDiv', data, layout);
+    Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
   }
 
 }
