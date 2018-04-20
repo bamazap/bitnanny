@@ -1,12 +1,21 @@
 <header fxLayoutAlign='space-between flex-end'>
   <h1>bitNanny</h1>
-  <nav mat-tab-nav-bar>
+  <nav mat-tab-nav-bar activeLinkIndex='1'>
     <a mat-tab-link
-       *ngFor='let link of navLinks'
-       [routerLink]='link.path'
-       routerLinkActive #rla='routerLinkActive'
-       [active]='rla.isActive'>
-      {{link.label}}
+      routerLink='/records'
+      (click)='activeLinkIndex = 1'
+      routerLinkActive #rla='routerLinkActive'
+      [active]='activeLinkIndex === 1'
+    >
+      <mat-icon>import_contacts</mat-icon>
+    </a>
+    <a mat-tab-link
+      routerLink='/analytics'
+      (click)='activeLinkIndex = 2'
+      routerLinkActive #rla='routerLinkActive'
+      [active]='activeLinkIndex === 2'
+    >
+      <mat-icon>timeline</mat-icon>
     </a>
   </nav>
 </header>

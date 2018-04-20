@@ -40,7 +40,6 @@ export class RecordComponent implements OnInit {
 
   decideVisibility(filter: Filter): boolean {
     // either the thing is empty, or our record matches the filter
-    console.log(filter.child, this.record.child);
     const childMatch = !filter.child || filter.child === this.record.child;
     const activityMatch = !filter.activity || (
       this.record.type === RecordType.activity &&

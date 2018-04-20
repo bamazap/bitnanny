@@ -6,10 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  navLinks = [
-    {path: '/records', label: 'Records'},
-    {path: '/analytics', label: 'Analytics'},
-  ];
+  activeLinkIndex = 1;
 
   constructor() { }
 
