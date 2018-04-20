@@ -26,6 +26,7 @@ import { RecordComponent } from './record/record.component';
 import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
 import { RecordService } from './record.service';
+import { FilterService } from './filter.service';
 
 import { InMemoryDataService } from './in-memory-data.service';
 import { AddRecordComponent } from './add-record/add-record.component';
@@ -61,6 +62,7 @@ import { AddRecordComponent } from './add-record/add-record.component';
     AuthService,
     MessageService,
     RecordService,
+    FilterService
   ],
   bootstrap: [AppComponent],
   entryComponents: [RecordDialogComponent]

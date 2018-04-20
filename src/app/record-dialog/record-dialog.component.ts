@@ -45,5 +45,4 @@ export class RecordDialogComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-
 }

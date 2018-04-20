@@ -6,8 +6,10 @@ import {
   RecordDialogComponent,
 } from '../record-dialog/record-dialog.component';
 import { RecordService } from '../record.service';
+import { FilterService } from '../filter.service';
 
 import { Record } from '../record';
+import { Filter } from '../filter';
 
 
 @Component({
@@ -17,13 +19,23 @@ import { Record } from '../record';
 })
 export class RecordComponent implements OnInit {
   @Input() record: Record;
+  show: boolean = true;
 
   constructor(
     private dialog: MatDialog,
-    private recordService: RecordService
+    private recordService: RecordService,
+    private filterService: FilterService
   ) { }
 
   ngOnInit() {
+    this.filterService.readFilter().subscribe(filter => this.show = this.decideVisibility(filter));
+  }
+
+  decideVisibility(filter : Filter): boolean {
+    // either the thing is empty, or our record matches the filter
+    return (!filter.child || filter.child == this.record.child) &&
+      (!filter.activity || filter.activity == this.record.activity) &&
+      (!filter.metric || filter.metric == this.record.metric);
   }
 
   openDialog() {

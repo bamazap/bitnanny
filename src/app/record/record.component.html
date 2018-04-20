@@ -1,4 +1,4 @@
-<mat-card (click)="openDialog()">
+<mat-card *ngIf="show" (click)="openDialog()">
   <mat-card-header>
     <mat-card-title>
       {{ record.descriptor }}
