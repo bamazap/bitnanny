@@ -15,7 +15,7 @@ export class RecordDialogComponent implements OnInit {
   form: FormGroup;
   descriptor: string;
   value: number;
-  child: number;
+  child: string;
   day: number;
   recordType: string;
 
