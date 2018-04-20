@@ -7,6 +7,8 @@ import { of } from 'rxjs/observable/of';
 
 import { Filter } from './filter';
 
+import { Subject }    from 'rxjs/Subject';
+
 const filterUrl = 'api/filter';
 
 const httpOptions = {
@@ -15,14 +17,25 @@ const httpOptions = {
 
 @Injectable()
 export class FilterService {
+  filter: Filter;
+
+  private changeSource = new Subject<string>();
+
+  changeBroadcast$ = this.changeSource.asObservable();
 
   constructor(private http: HttpClient) { }
 
   readFilter(): Observable<Filter> {
-    return this.http.get<Filter>(`${filterUrl}`);
+    return of(this.filter);
+  }
+
+  broadcastChange() {
+    this.changeSource.next('change');
   }
 
   updateFilter(filter: Filter): Observable<any> {
-    return this.http.put(filterUrl, filter, httpOptions);
+    console.log(filter);
+    this.filter = filter;
+    return null;
   }
 }

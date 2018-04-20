@@ -27,6 +27,7 @@ export class FiltersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.updateFilter();
     this.activities = ActivityCategories.map((name, id) => {
       return { id, name };
     });
@@ -38,14 +39,14 @@ export class FiltersComponent implements OnInit {
   createFilterObj () {
     const filter = new Filter();
     filter.child = this.selectedChild ? this.children[this.selectedChild].name : '';
-    filter.activity = this.selectedActivity ? this.activities[this.selectedActivity].name : '';
-    filter.metric = this.selectedMetric ? this.metrics[this.selectedMetric].name : '';
+    filter.activity = this.selectedActivity ? this.activities[this.selectedActivity].name.toLowerCase() : '';
+    filter.metric = this.selectedMetric ? this.metrics[this.selectedMetric].name.toLowerCase() : '';
     return filter;
   }
 
   updateFilter() {
-    this.filterService.updateFilter(this.createFilterObj());
-    console.log(this.createFilterObj())
+    this.filterService.updateFilter(<Filter>this.createFilterObj());
+    this.filterService.broadcastChange();
   }
 
   onChange() {

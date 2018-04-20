@@ -8,7 +8,7 @@ import {
 import { RecordService } from '../record.service';
 import { FilterService } from '../filter.service';
 
-import { Record } from '../record';
+import { Record, RecordType } from '../record';
 import { Filter } from '../filter';
 
 
@@ -28,14 +28,16 @@ export class RecordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.filterService.readFilter().subscribe(filter => this.show = this.decideVisibility(filter));
+    this.filterService.changeBroadcast$.subscribe(() => {
+      this.filterService.readFilter().subscribe(filter => this.show = this.decideVisibility(filter));
+    });
   }
 
   decideVisibility(filter : Filter): boolean {
     // either the thing is empty, or our record matches the filter
     return (!filter.child || filter.child == this.record.child) &&
-      (!filter.activity || filter.activity == this.record.activity) &&
-      (!filter.metric || filter.metric == this.record.metric);
+      (!filter.activity || (this.record.type == RecordType.activity && this.record.descriptor == filter.activity)) &&
+      (!filter.metric || (this.record.type == RecordType.metric && this.record.descriptor == filter.metric));
   }
 
   openDialog() {
@@ -49,7 +51,7 @@ export class RecordComponent implements OnInit {
           this.recordService.updateRecord(<Record>this.record)
             .subscribe(() => {
               this.record.value = data.value;
-              this.record.child = data.child; 
+              this.record.child = data.child;
               this.record.descriptor = data.descriptor;
               this.record.type = data.type;
             });
