@@ -1,6 +1,6 @@
 export class RecordNoID {
   day: number;
-  child: number;
+  child: string;
   descriptor: string;
   value: number;
 }
