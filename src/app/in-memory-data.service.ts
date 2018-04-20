@@ -13,10 +13,12 @@ function withType<T>(obj: T, type: RecordType): T & { type: RecordType} {
   return <T & { type: RecordType }>obj;
 }
 
+const intToChild = {0: "Bryan", 1: "Emily"}; 
+
 function generateSleep(nDays: number): RecordNoID[] {
   return [].concat(...range(2).map(child => range(nDays).map((day) => {
     const value = randint(6, 9) + 0.5 * randint(-1, 1);
-    return {day, child, descriptor: 'sleep', value, type: RecordType.activity};
+    return {day, child: intToChild[child], descriptor: 'sleep', value, type: RecordType.activity};
   })));
 }
 
