@@ -1,14 +1,17 @@
+<h1 *ngIf="!recordType">
+  Select record type.
+</h1>
 <div mat-dialog-title id='title'>
-  <mat-radio-group [(ngModel)]="recordType">
+  <mat-radio-group [(ngModel)]="recordType" (change)="radioChange($event)">
     <mat-radio-button value="Activity">Activity</mat-radio-button>
     <mat-radio-button value="Metric">Metric</mat-radio-button>
   </mat-radio-group>
 </div>
 
 <mat-dialog-content *ngIf="recordType" [formGroup]="form">
-  <mat-form-field>
+
+  <mat-form-field *ngIf="recordType === 'Activity'">
     <mat-select
-      *ngIf="recordType === 'Activity'"
       placeholder="Category"
       formControlName="descriptor"
     >
@@ -19,8 +22,9 @@
         {{ category }}
       </mat-option>
     </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="recordType === 'Metric'">
     <mat-select
-      *ngIf="recordType === 'Metric'"
       placeholder="Evaluation"
       formControlName="descriptor"
     >
@@ -33,11 +37,19 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="{{recordType === 'Activity' ? 'Duration' : 'Rating'}}"
+  <mat-form-field *ngIf="recordType === 'Activity'">
+    <input matInput
+      placeholder="Duration (hrs)"
       formControlName="value"
+      type="number"
+      step="0.5"
+    >
+  </mat-form-field>
+  <mat-form-field *ngIf="recordType === 'Metric'">
+    <input matInput
+      placeholder="Rating (stars)"
+      formControlName="value"
+      type="number"
     >
   </mat-form-field>
 
@@ -50,7 +62,11 @@
   </mat-form-field>
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<mat-dialog-actions *ngIf="recordType">
   <button class="mat-raised-button" (click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+  <button
+    class="mat-raised-button mat-primary"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >Save</button>
 </mat-dialog-actions>
