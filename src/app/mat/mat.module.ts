@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 
 // Imports all Angular Material modules used in the application
 // Include this wherever you'd like to use the components
@@ -21,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatCardModule,
     MatInputModule,
+    MatRadioModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -31,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatCardModule,
     MatInputModule,
+    MatRadioModule,
   ],
 })
 export class MatModule { }
