@@ -16,12 +16,12 @@ export class AnalyticsComponent implements OnInit {
   currentMetric = 'Mood';
   
   data = {'Brian': 
-	    {'Sleep': 
-	       {'Mood': 
-	          {x: [7, 3, 8, 5, 10, 9, 8, 4, 5, 6], y: [3, 1, 4, 3, 4, 3.5, 4.2, 1.2, 0.4, 2.1]}
-		}
-	     }
-         };
+    {'Sleep': 
+      {'Mood': 
+        {x: [7, 3, 8, 5, 10, 9, 8, 4, 5, 6], y: [3, 1, 4, 3, 4, 3.5, 4.2, 1.2, 0.4, 2.1]}
+      }
+    }
+  };
 
   activityToLabel = {'Sleep': 'Hours of Sleep'};
   metricToLabel = {'Mood': 'Mood'};
