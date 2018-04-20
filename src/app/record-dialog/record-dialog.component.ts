@@ -51,12 +51,8 @@ export class RecordDialogComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-<<<<<<< HEAD
-=======
 
   radioChange() {
     this.form.patchValue({ descriptor: null, value: null });
   }
-
->>>>>>> 65353ba197064f15be011993a1c70b50bff213de
 }
