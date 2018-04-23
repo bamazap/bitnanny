@@ -33,6 +33,7 @@ import { RecordService } from './record.service';
 import { FilterService } from './filter.service';
 
 import { InMemoryDataService } from './in-memory-data.service';
+import { SelectRecordComponent } from './select-record/select-record.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     RecordDialogComponent,
     RecordComponent,
     AddRecordComponent,
+    SelectRecordComponent,
   ],
   imports: [
     BrowserModule,
