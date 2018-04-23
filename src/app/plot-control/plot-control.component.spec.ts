@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectRecordComponent } from './select-record.component';
+import { PlotControlComponent } from './plot-control.component';
 
-describe('SelectRecordComponent', () => {
-  let component: SelectRecordComponent;
-  let fixture: ComponentFixture<SelectRecordComponent>;
+describe('PlotControlComponent', () => {
+  let component: PlotControlComponent;
+  let fixture: ComponentFixture<PlotControlComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectRecordComponent ]
+      declarations: [ PlotControlComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectRecordComponent);
+    fixture = TestBed.createComponent(PlotControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

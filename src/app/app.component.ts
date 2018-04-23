@@ -17,8 +17,4 @@ export class AppComponent {
   showNavbar() {
     return this.router.url !== '/login';
   }
-
-  showFilters() {
-    return ['/records', '/analytics'].includes(this.router.url);
-  }
 }

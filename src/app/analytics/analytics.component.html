@@ -1,8 +1,13 @@
-<div class='message'>
-  <h2 *ngIf="!show">
-    Select a child, activity, and evaluation to see trends.
-  </h2>
-</div>
-<div class="content">
-  <div id="myDiv" [ngClass]="show ? 'show': 'hide'"></div>
+<div fxLayout='column'>
+  <app-plot-control fxFlex='0 1 auto'></app-plot-control>
+  <div fxFlex='1 1 100vw'>
+    <div class='message'>
+      <h2 *ngIf="!show">
+        Select a child, activity, and evaluation to see trends.
+      </h2>
+    </div>
+    <div class="content">
+      <div id="myDiv" [ngClass]="show ? 'show': 'hide'"></div>
+    </div>
+  </div>
 </div>

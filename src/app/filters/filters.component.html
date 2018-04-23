@@ -1,33 +1,26 @@
 <div fxLayoutAlign='space-between' id='filters'>
   <mat-form-field fxFlex='1 1 auto' class='filter'>
-    <mat-select placeholder="Child" [(value)]="selectedChild" (change)="updateFilter()">
-      <mat-option>
-        <span class='select-none'>Any</span>
-      </mat-option>
-      <mat-option *ngFor="let child of children" [value]="child.id">
-        {{ child.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field fxFlex='1 1 auto' class='filter'>
-    <mat-select placeholder="Activity" [(value)]="selectedActivity" (change)="updateFilter()">
-      <mat-option>
-        <span class='select-none'>Any</span>
-      </mat-option>
-      <mat-option *ngFor="let activity of activities" [value]="activity.id">
-        {{ activity.name }}
+    <mat-select
+      multiple
+      placeholder="Filter by Child"
+      [(ngModel)]="selectedChildren"
+      (change)="updateFilter()"
+    >
+      <mat-option *ngFor="let child of children" [value]="child">
+        {{ child }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field fxFlex='1 1 auto' class='filter'>
-    <mat-select placeholder="Evaluation" [(value)]="selectedMetric" (change)="updateFilter()">
-      <mat-option>
-        <span class='select-none'>Any</span>
-      </mat-option>
-      <mat-option *ngFor="let metric of metrics" [value]="metric.id">
-        {{ metric.name }}
+    <mat-select
+      multiple
+      placeholder="Filter by Record Type"
+      [(ngModel)]="selectedRecords"
+      (change)="updateFilter()"
+    >
+      <mat-option *ngFor="let record of records" [value]="record">
+        {{ record }}
       </mat-option>
     </mat-select>
   </mat-form-field>

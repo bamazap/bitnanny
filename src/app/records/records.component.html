@@ -1,20 +1,23 @@
-<div fxFlexFill fxLayout='row' id='calendar'>
-  <div class='time-travel'>
-    <button (click)='travelBackward()'>
-      &larr;
-    </button>
+<div fxLayout='column'>
+  <app-filters fxFlex='0 1 auto'></app-filters>
+  <div fxFlex='1 1 100vw'>
+    <div fxLayout='row' id='calendar'>
+      <div class='time-travel'>
+        <button (click)='travelBackward()'>
+          &larr;
+        </button>
+      </div>
+      <app-day
+        *ngFor='let day of daysToShow'
+        fxFlex='1 1 0'
+        class='day'
+        [daysBack]='day'
+      >
+      </app-day>
+      <div class='time-travel'>
+        <button (click)='travelForward()' *ngIf='latestDay > 0'>
+          &rarr;
+        </button>
+    </div>
   </div>
-  <app-select-record>
-  </app-select-record>
-  <app-day
-    *ngFor='let day of daysToShow'
-    fxFlex='1 1 0'
-    class='day'
-    [daysBack]='day'
-  >
-  </app-day>
-  <div class='time-travel'>
-    <button (click)='travelForward()' *ngIf='latestDay > 0'>
-      &rarr;
-    </button>
 </div>

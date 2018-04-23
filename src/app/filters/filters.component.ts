@@ -12,35 +12,37 @@ import { FilterService } from '../filter.service';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
-  children = [
-    { id: 0, name: 'Bryan' },
-    { id: 1, name: 'Emily' },
-  ];
-  activities: { id: number, name: string}[] = [];
-  metrics: { id: number, name: string}[] = [];
-  selectedChild = '';
-  selectedActivity = '';
-  selectedMetric = '';
+  children = ['Bryan', 'Emily'];
+  records: string[];
+  selectedChildren: string[];
+  selectedRecords: string[];
 
   constructor(private filterService: FilterService) {
-
   }
 
   ngOnInit() {
+    this.records = ActivityCategories.slice(0).concat(MetricNames);
+    this.selectedChildren = [];
+    this.selectedRecords = [];
     this.updateFilter();
-    this.activities = ActivityCategories.map((name, id) => {
-      return { id, name };
-    });
-    this.metrics = MetricNames.map((name, id) => {
-      return { id, name };
-    });
   }
 
   createFilterObj () {
     const filter = new Filter();
-    filter.child = typeof this.selectedChild === 'number' ? this.children[this.selectedChild].name : '';
-    filter.activity = typeof this.selectedActivity === 'number' ? this.activities[this.selectedActivity].name : '';
-    filter.metric = typeof this.selectedMetric === 'number' ? this.metrics[this.selectedMetric].name : '';
+    filter.child = '';
+    filter.activity = '';
+    filter.metric = '';
+    if (this.selectedChildren.length === 1) {
+      filter.child = this.selectedChildren[0];
+    }
+    if (this.selectedRecords.length === 1) {
+      const selected = this.selectedRecords[0];
+      if (ActivityCategories.includes(selected)) {
+        filter.activity = selected;
+      } else {
+        filter.metric = selected;
+      }
+    }
     return filter;
   }
 

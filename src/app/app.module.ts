@@ -25,6 +25,8 @@ import { DayComponent } from './day/day.component';
 import { RecordDialogComponent } from './record-dialog/record-dialog.component';
 import { RecordComponent } from './record/record.component';
 import { AddRecordComponent } from './add-record/add-record.component';
+import { PlotControlComponent } from './plot-control/plot-control.component';
+
 
 // Services
 import { AuthService } from './auth.service';
@@ -33,7 +35,6 @@ import { RecordService } from './record.service';
 import { FilterService } from './filter.service';
 
 import { InMemoryDataService } from './in-memory-data.service';
-import { SelectRecordComponent } from './select-record/select-record.component';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { SelectRecordComponent } from './select-record/select-record.component';
     RecordDialogComponent,
     RecordComponent,
     AddRecordComponent,
-    SelectRecordComponent,
+    PlotControlComponent,
   ],
   imports: [
     BrowserModule,
