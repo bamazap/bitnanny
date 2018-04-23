@@ -42,7 +42,7 @@ export class AnalyticsComponent implements OnInit {
       y: currentY,
       mode: 'markers',
       type: 'scatter',
-      marker: {size: 16, color: revY, colorscale: 'Picnic'}
+      marker: {size: 16, color: '#041144'}
     };
     const data = [trace];
     return data;
@@ -51,14 +51,14 @@ export class AnalyticsComponent implements OnInit {
   getPlotLayout(child, activity, metric) {
     const layout = {
     title: activity + ' vs. ' + metric + ' for ' + child,
-    titlefont: { size: 18, color: 'black'},
+    titlefont: { size: 18, color: '#041144'},
     xaxis: {
       title: this.activityToLabel[activity],
-      titlefont: {size: 16, color: 'black'}
+      titlefont: {size: 16, color: '#041144'}
     },
     yaxis: {
       title: this.metricToLabel[metric],
-      titlefont: {size: 16, color: 'black'}
+      titlefont: {size: 16, color: '#041144'}
     },
   };
   return layout;
