@@ -24,6 +24,10 @@ export class RecordService {
     return this.http.get<Record[]>(`${recordsUrl}/?day=${day}`);
   }
 
+  readAllRecords(): Observable<Record[]> {
+    return this.http.get<Record[]>(`${recordsUrl}`);
+  }
+
   // TODO: figure out return type
   updateRecord(record: Record): Observable<any> {
     return this.http.put(recordsUrl, record, httpOptions);
