@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Plotly from 'plotly.js';
 import {Config, Data, Layout} from 'plotly.js';
-import { FilterService } from '../filter.service';
-import { Filter } from '../filter';
+import { SelectService } from '../select.service';
+import { Selection } from '../selection';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { Filter } from '../filter';
   styleUrls: ['./analytics.component.css']
 })
 export class AnalyticsComponent implements OnInit {
-  
+
   currentChild = 'Bryan';
   currentActivity = 'Sleep';
   currentMetric = 'Mood';
@@ -36,15 +36,15 @@ export class AnalyticsComponent implements OnInit {
     }
   };
 
-  //activityToLabel = {Sleep: 'Hours of Sleep'};
-  //metricToLabel = {Mood: 'Mood'};
+  // activityToLabel = {Sleep: 'Hours of Sleep'};
+  // metricToLabel = {Mood: 'Mood'};
 
-  constructor(private filterService: FilterService) { }
+  constructor(private selectService: SelectService) { }
 
   getPlotData(_child, _activity, _metric) {
-    var child = 'Bryan';
-    var activity = 'Sleep';
-    var metric = 'Mood';
+    const child = 'Bryan';
+    const activity = 'Sleep';
+    const metric = 'Mood';
     const currentX = this.data[child][activity][metric].x;
     const currentY = this.data[child][activity][metric].y;
     const revY = currentY.map(i => 5 - i);
@@ -75,53 +75,55 @@ export class AnalyticsComponent implements OnInit {
   return layout;
   }
 
-  decideVisibility(filter: Filter): boolean {
-    return !!(filter.child && filter.activity && filter.metric);
+  decideVisibility(selection: Selection): boolean {
+    return !!(selection.child && selection.activity && selection.metric);
   }
 
-  getChild(filter: Filter): string {
-    return filter.child;
+  getChild(selection: Selection): string {
+    return selection.child;
   }
 
-  getActivity(filter: Filter): string {
-    return filter.activity;
+  getActivity(selection: Selection): string {
+    return selection.activity;
   }
 
-  getMetric(filter: Filter): string {
-    return filter.metric;
+  getMetric(selection: Selection): string {
+    return selection.metric;
   }
 
   ngOnInit() {
-    var data = this.getPlotData(
+    const data = this.getPlotData(
       this.currentChild,
       this.currentActivity,
       this.currentMetric
     );
-    var layout = this.getPlotLayout(
+    const layout = this.getPlotLayout(
       this.currentChild,
       this.currentActivity,
       this.currentMetric
     );
-    this.filterService.readFilter().subscribe((filter) => {
-      if (filter) {
-        this.show = this.decideVisibility(filter);
+    Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
+    this.selectService.readSelection().subscribe((selection) => {
+      if (selection) {
+        this.show = this.decideVisibility(selection);
       }
     });
-    this.filterService.changeBroadcast$.subscribe(() => {
-      this.filterService.readFilter().subscribe((filter) => {
-        if (filter) {
-          this.show = this.decideVisibility(filter);
-          this.currentChild = this.getChild(filter);
-          this.currentActivity = this.getActivity(filter);
-          this.currentMetric = this.getMetric(filter);
-          // var data = this.getPlotData(this.currentChild, this.currentActivity, this.currentMetric);
-          var layout = this.getPlotLayout(this.currentChild, this.currentActivity, this.currentMetric);
-          console.log('happened');
+    this.selectService.changeBroadcast$.subscribe(() => {
+      this.selectService.readSelection().subscribe((selection) => {
+        if (selection) {
+          this.show = this.decideVisibility(selection);
+          this.currentChild = this.getChild(selection);
+          this.currentActivity = this.getActivity(selection);
+          this.currentMetric = this.getMetric(selection);
+          const layout = this.getPlotLayout(
+            this.currentChild,
+            this.currentActivity,
+            this.currentMetric
+          );
           Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
         }
       });
     });
-    Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
   }
 
 }
