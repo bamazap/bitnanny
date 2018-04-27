@@ -38,18 +38,25 @@ export class RecordComponent implements OnInit {
     });
   }
 
+  // TODO: ew. I couldn't think of better boolean logic...
   decideVisibility(filter: Filter): boolean {
     // either the thing is empty, or our record matches the filter
-    const childMatch = !filter.child || filter.child === this.record.child;
-    const activityMatch = !filter.activity || (
+    const childMatch = filter.child.length === 0 || filter.child.includes(this.record.child);
+    const noActivityFilters = filter.activity.length === 0;
+    const noMetricFilters = filter.metric.length === 0;
+    const activityMatch = !noActivityFilters && (
       this.record.type === RecordType.activity &&
-      this.record.descriptor === filter.activity
+      filter.activity.includes(this.record.descriptor)
     );
-    const metricMatch = !filter.metric || (
+    const metricMatch = !noMetricFilters && (
       this.record.type === RecordType.metric &&
-      this.record.descriptor === filter.metric
+      filter.metric.includes(this.record.descriptor)
     );
-    return childMatch && activityMatch && metricMatch;
+    return childMatch &&
+      ((noActivityFilters && noMetricFilters)
+      || noActivityFilters && metricMatch
+      || noMetricFilters && activityMatch
+      || (activityMatch || metricMatch));
   }
 
   openDialog() {
