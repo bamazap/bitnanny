@@ -13,8 +13,7 @@ import { FilterService } from '../filter.service';
 })
 export class PlotControlComponent implements OnInit {
   children = [
-    { id: 0, name: 'Bryan' },
-    { id: 1, name: 'Emily' },
+    {id: 0, name: 'Bryan'}, {id: 1, name: 'Emily'}
   ];
   activities: { id: number, name: string}[] = [];
   metrics: { id: number, name: string}[] = [];
