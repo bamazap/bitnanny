@@ -29,18 +29,18 @@ export class FiltersComponent implements OnInit {
 
   createFilterObj () {
     const filter = new Filter();
-    filter.child = '';
-    filter.activity = '';
-    filter.metric = '';
-    if (this.selectedChildren.length === 1) {
-      filter.child = this.selectedChildren[0];
+    filter.child = [];
+    filter.activity = [];
+    filter.metric = [];
+    if (this.selectedChildren.length > 0) {
+      filter.child = this.selectedChildren;
     }
-    if (this.selectedRecords.length === 1) {
-      const selected = this.selectedRecords[0];
+    for (let i = 0; i < this.selectedRecords.length; i++) {
+      const selected = this.selectedRecords[i];
       if (ActivityCategories.includes(selected)) {
-        filter.activity = selected;
+        filter.activity.push(selected);
       } else {
-        filter.metric = selected;
+        filter.metric.push(selected);
       }
     }
     return filter;

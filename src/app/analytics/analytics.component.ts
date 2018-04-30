@@ -4,6 +4,8 @@ import {Config, Data, Layout} from 'plotly.js';
 import { FilterService } from '../filter.service';
 import { Filter } from '../filter';
 import { RecordService } from '../record.service';
+import { SelectService } from '../select.service';
+import { Selection } from '../selection';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { RecordService } from '../record.service';
   styleUrls: ['./analytics.component.css']
 })
 export class AnalyticsComponent implements OnInit {
-  
+
   currentChild = 'Bryan';
   currentActivity = 'Sleep';
   currentMetric = 'Mood';
@@ -24,13 +26,13 @@ export class AnalyticsComponent implements OnInit {
   records = [];
   dayNumber = 1;
 
-  //activityToLabel = {Sleep: 'Hours of Sleep'};
-  //metricToLabel = {Mood: 'Mood'};
+  // activityToLabel = {Sleep: 'Hours of Sleep'};
+  // metricToLabel = {Mood: 'Mood'};
 
-  constructor(private filterService: FilterService, private recordService: RecordService) { }
+  constructor(private filterService: FilterService, private recordService: RecordService, private selectService: SelectService) { }
 
   getPlotData(x,y) {
-    const trace: any = {
+      const trace: any = {
       x: x,
       y: y,
       mode: 'markers',
@@ -68,6 +70,9 @@ export class AnalyticsComponent implements OnInit {
     var x = [];
     var y = [];
     var days = this.records.map(record => record.day);
+    if (child == 'Bryan' && activity == 'Sleep' && metric == 'Mood') {
+      //debugger;
+    }
     for (var i = 0; i < days.length; i++) {
       var day = days[i];
       var dayActivities = this.records.filter(record => record.day == day && record.descriptor == activity && record.child == child);
@@ -82,54 +87,58 @@ export class AnalyticsComponent implements OnInit {
     return [x,y];
   }
 
-  decideVisibility(filter: Filter): boolean {
-    return !!(filter.child && filter.activity && filter.metric);
+  decideVisibility(selection: Selection): boolean {
+    return !!(selection.child && selection.activity && selection.metric);
   }
 
-  getChild(filter: Filter): string {
-    return filter.child;
+  getChild(selection: Selection): string {
+    return selection.child;
   }
 
-  getActivity(filter: Filter): string {
-    return filter.activity;
+  getActivity(selection: Selection): string {
+    return selection.activity;
   }
 
-  getMetric(filter: Filter): string {
-    return filter.metric;
+  getMetric(selection: Selection): string {
+    return selection.metric;
   }
 
   ngOnInit() {
+    var data = this.getPlotData(this.x, this.y);
     this.getRecords();
-    var data = this.getPlotData( this.x, this.y );
     var layout = this.getPlotLayout(
       this.currentChild,
       this.currentActivity,
       this.currentMetric
     );
-    this.filterService.readFilter().subscribe((filter) => {
-      if (filter) {
-        this.show = this.decideVisibility(filter);
+    Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
+    this.selectService.readSelection().subscribe((selection) => {
+      if (selection) {
+        this.show = this.decideVisibility(selection);
       }
     });
-    this.filterService.changeBroadcast$.subscribe(() => {
-      this.filterService.readFilter().subscribe((filter) => {
-        if (filter) {
+    this.selectService.changeBroadcast$.subscribe(() => {
+      this.selectService.readSelection().subscribe((selection) => {
+        if (selection) {
+          this.show = this.decideVisibility(selection);
+          this.currentChild = this.getChild(selection);
+          this.currentActivity = this.getActivity(selection);
+          this.currentMetric = this.getMetric(selection);
+          const layout = this.getPlotLayout(
+            this.currentChild,
+            this.currentActivity,
+            this.currentMetric
+          );
           var records = this.records;
-          this.show = this.decideVisibility(filter);
-          this.currentChild = this.getChild(filter);
-          this.currentActivity = this.getActivity(filter);
-          this.currentMetric = this.getMetric(filter);
           var x_y = this.recordsForChild(records, this.currentChild, this.currentActivity, this.currentMetric);
           var x = x_y[0];
           var y = x_y[1];
           var data = this.getPlotData(x, y);
-          var layout = this.getPlotLayout(this.currentChild, this.currentActivity, this.currentMetric);
-          console.log('happened');
-          Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
+          var newLayout = this.getPlotLayout(this.currentChild, this.currentActivity, this.currentMetric);
+          Plotly.newPlot('myDiv', data, newLayout, {displayModeBar: false});
         }
       });
     });
-    Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
   }
 
 }

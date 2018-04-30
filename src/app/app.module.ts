@@ -25,7 +25,7 @@ import { DayComponent } from './day/day.component';
 import { RecordDialogComponent } from './record-dialog/record-dialog.component';
 import { RecordComponent } from './record/record.component';
 import { AddRecordComponent } from './add-record/add-record.component';
-import { PlotControlComponent } from './plot-control/plot-control.component';
+import { SelectComponent } from './select/select.component';
 
 
 // Services
@@ -33,6 +33,7 @@ import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
 import { RecordService } from './record.service';
 import { FilterService } from './filter.service';
+import { SelectService } from './select.service';
 
 import { InMemoryDataService } from './in-memory-data.service';
 
@@ -49,7 +50,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     RecordDialogComponent,
     RecordComponent,
     AddRecordComponent,
-    PlotControlComponent,
+    SelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,13 +64,14 @@ import { InMemoryDataService } from './in-memory-data.service';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService,
       { dataEncapsulation: false, delay: 0 }
-    )
+    ),
   ],
   providers: [
     AuthService,
     MessageService,
     RecordService,
-    FilterService
+    FilterService,
+    SelectService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [RecordDialogComponent]
