@@ -39,7 +39,7 @@ export class RecordDialogComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       descriptor: [this.descriptor, [Validators.required]],
-      value: [this.value, [Validators.required]],
+      value: [this.value, [Validators.required, Validators.min(0), Validators.max(24)]],
       child: [this.child, [Validators.required]],
       day: [this.day, [Validators.required]],
     });
