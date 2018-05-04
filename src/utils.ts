@@ -36,3 +36,9 @@ export function unixDays(unixMSec: number) {
 export function randint(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function compare(a: any, b: any): number {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+}

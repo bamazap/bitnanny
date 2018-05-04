@@ -1,8 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core';
 
-import { Record } from '../record';
+import { Record, RecordType } from '../record';
 import { RecordService } from '../record.service';
-import { unixDays } from '../../utils';
+import { unixDays, compare } from '../../utils';
 
 const days = [
   'Sunday',
@@ -52,11 +52,23 @@ export class DayComponent implements OnInit {
 
   getRecords() {
     this.recordService.readRecordsByDay(this.dayNumber)
-      .subscribe(records => this.records = records);
+      .subscribe(records => {
+        this.records = records;
+        this.sortRecords();
+      });
   }
 
   afterAdd(record: Record) {
     this.records.push(record);
+    this.sortRecords();
   }
 
+  sortRecords() {
+    this.records.sort((recordA, recordB) => {
+      if (recordA.type === recordB.type) {
+        return compare(recordA.descriptor, recordB.descriptor);
+      }
+      return compare(recordA.type, recordB.type);
+    });
+  }
 }
