@@ -37,7 +37,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { day: 1, child: 'Emily', descriptor: 'Arts', value: 1 },
       { day: 8, child: 'Emily', descriptor: 'Arts', value: 1 },
       { day: 12, child: 'Emily', descriptor: 'Arts', value: 1 },
-      { day: 2, child: 'Bryan', descriptor: 'Exercise', value: 1.5 },
+      { day: 3, child: 'Bryan', descriptor: 'Exercise', value: 1.5 },
       { day: 4, child: 'Emily', descriptor: 'Exercise', value: 2 },
       { day: 9, child: 'Bryan', descriptor: 'Exercise', value: 1.5 },
       { day: 11, child: 'Emily', descriptor: 'Exercise', value: 1 },

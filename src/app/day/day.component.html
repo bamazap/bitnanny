@@ -6,7 +6,7 @@
     <div *ngFor='let record of records' class='record'>
       <app-record [record]='record'></app-record>
     </div>
-    <app-add-record [day]='dayNumber' (afterAdd)='afterAdd($event)'>
+    <app-add-record [day]='dayNumber' (afterAdd)='afterAdd($event)' (afterDelete)='afterDelete($event)'>
     </app-add-record>
   </div>
 </div>

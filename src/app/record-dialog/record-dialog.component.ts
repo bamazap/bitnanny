@@ -54,6 +54,11 @@ export class RecordDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  delete() {
+    const data: any = { type: this.recordType }; 
+    this.dialogRef.close(delete this.recordType); 
+  }
+
   radioChange(_evt) {
     this.form.patchValue({ descriptor: null, value: null });
   }
