@@ -7,6 +7,7 @@ import { RecordService } from '../record.service';
 import { SelectService } from '../select.service';
 import { Selection } from '../selection';
 import { Record } from '../record';
+import * as regression from 'regression';
 
 
 @Component({
@@ -21,8 +22,11 @@ export class AnalyticsComponent implements OnInit {
   currentMetric = 'Mood';
   show = false;
 
+  itemsToLabels = {'Sleep': 'Hours of Sleep', 'Mood': 'Mood Rating',
+                    'Exercise': 'Hours of Exercise', 'Academic Performance': 'GPA'};
+
   x = [7, 3, 8, 5, 10, 9, 8, 4, 5, 6];
-  y: [3, 1, 4, 3, 4, 3.5, 4.2, 1.2, 0.4, 2.1];
+  y = [3, 1, 4, 3, 4, 3.5, 4.2, 1.2, 0.4, 2.1];
 
   records: Record[] = [];
   dayNumber = 1;
@@ -37,28 +41,59 @@ export class AnalyticsComponent implements OnInit {
   ) { }
 
   getPlotData(x, y) {
+      var fittedLineX = [];
+      var fittedLineY = [];
+      if (x.length == y.length && x.length > 0) {
+        var points = [];
+        for (var i = 0; i < x.length; i++) {
+          points.push([x[i], y[i]]);
+        }
+        var result = regression.linear(points);
+        var fitPoints = result.points;
+        fittedLineX = fitPoints.map(point => point[0]);
+        fittedLineY = fitPoints.map(point => point[1]);
+      }
       const trace: any = {
-      x: x,
-      y: y,
-      mode: 'markers',
-      type: 'scatter',
-      marker: {size: 16, color: '#041144'}
-    };
-    const data = [trace];
+        x: x,
+        y: y,
+        mode: 'markers',
+        type: 'scatter',
+        hoverinfo: 'none',
+        marker: {size: 16, color: '#041144'}
+      };
+      const trace2: any = {
+        x: fittedLineX,
+        y: fittedLineY,
+        mode: 'lines',
+        type: 'scatter'
+      }
+
+    const data = [trace, trace2];
     return data;
   }
 
   getPlotLayout(child, activity, metric) {
+    var activityLabel = this.itemsToLabels[activity];
+    var metricLabel = this.itemsToLabels[metric];
+    if (activityLabel == undefined) {
+      activityLabel = activity;
+    }
+    if (metricLabel == undefined) {
+      metricLabel = metric;
+    }
     const layout = {
     title: activity + ' vs. ' + metric + ' for ' + child,
-    titlefont: { size: 18, color: '#041144'},
+    showlegend: false,
+    titlefont: { size: 36, color: '#041144'},
     xaxis: {
-      title: activity,
-      titlefont: {size: 16, color: '#041144'}
+      title: activityLabel,
+      titlefont: {size: 28, color: '#041144'},
+      tickfont: {size: 22, color: '#041144'}
     },
     yaxis: {
-      title: metric,
-      titlefont: {size: 16, color: '#041144'}
+      title: metricLabel,
+      titlefont: {size: 28, color: '#041144'}, 
+      tickfont: {size: 22, color: '#041144'}
     },
   };
   return layout;
