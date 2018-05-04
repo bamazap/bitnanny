@@ -4,8 +4,8 @@
   margin: 0 5px;
 }
 
-.today-content {
-  background-color: #ffdc00;
+.today {
+  background-color: hsl(60, 95%, 80%);
 }
 
 .day-header {
