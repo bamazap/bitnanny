@@ -21,6 +21,9 @@ export class AnalyticsComponent implements OnInit {
   currentMetric = 'Mood';
   show = false;
 
+  itemsToLabels = {'Sleep': 'Hours of Sleep', 'Mood': 'Mood Rating',
+                    'Exercise': 'Hours of Exercise', 'Academic Performance': 'GPA'};
+
   x = [7, 3, 8, 5, 10, 9, 8, 4, 5, 6];
   y: [3, 1, 4, 3, 4, 3.5, 4.2, 1.2, 0.4, 2.1];
 
@@ -50,17 +53,25 @@ export class AnalyticsComponent implements OnInit {
   }
 
   getPlotLayout(child, activity, metric) {
+    var activityLabel = this.itemsToLabels[activity];
+    var metricLabel = this.itemsToLabels[metric];
+    if (activityLabel == undefined) {
+      activityLabel = activity;
+    }
+    if (metricLabel == undefined) {
+      metricLabel = metric;
+    }
     const layout = {
     title: activity + ' vs. ' + metric + ' for ' + child,
-    titlefont: { size: 40, color: '#041144'},
+    titlefont: { size: 36, color: '#041144'},
     xaxis: {
-      title: activity,
-      titlefont: {size: 32, color: '#041144'},
+      title: activityLabel,
+      titlefont: {size: 28, color: '#041144'},
       tickfont: {size: 22, color: '#041144'}
     },
     yaxis: {
-      title: metric,
-      titlefont: {size: 32, color: '#041144'}, 
+      title: metricLabel,
+      titlefont: {size: 28, color: '#041144'}, 
       tickfont: {size: 22, color: '#041144'}
     },
   };
