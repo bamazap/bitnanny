@@ -1,11 +1,11 @@
 <mat-card
   *ngIf="show"(click)="openDialog()"
-  [ngClass]="record.child"
-  [ngStyle]="{ 'background-color': recordColor}"
+  [ngClass]="record.type"
+  [ngStyle]="recordStyle"
   fxLayout='row'
   fxLayoutAlign='space-between center'
 >
-  <div class='text' fxLayout='column'>
+  <div class='text' fxLayout='column' fxLayoutAlign='end start'>
     <div class='descriptor' fxFlex='1 0 auto'>{{ record.descriptor }}</div>
     <div
       class='child'
@@ -14,12 +14,13 @@
       {{ record.child }}
     </div>
   </div>
-  <div fxLayoutAlign='center center' div class="value">
-    <span>{{ record.value }}</span>
-    <span>&nbsp;</span>
-    <span *ngIf="record.type === 'Activity'" class='hour'>
+  <div fxLayout='column' fxLayoutAlign='center center' class="circle">
+    <div class="value">
+      {{ record.value }}
+    </div>
+    <div class="hour" *ngIf="record.type === 'Activity'">
       {{ record.value !== 1 ? 'hrs' : 'hr'}}
-    </span>
+    </div>
     <span *ngIf="record.type === 'Metric'">
       <mat-icon class='star'>star</mat-icon>
     </span>

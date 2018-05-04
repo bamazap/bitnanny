@@ -20,7 +20,7 @@ import { ActivityColors, MetricColors, ChildColors } from '../colors';
 export class RecordComponent implements OnInit {
   @Input() record: Record;
   show = true;
-  recordColor = '';
+  recordStyle = {};
   childColor = '';
   maxChildWidthCH = 0;
 
@@ -39,8 +39,14 @@ export class RecordComponent implements OnInit {
         this.show = this.decideVisibility(filter);
       });
     });
-    this.recordColor = ActivityColors[this.record.descriptor] ||
+    const recordColor = ActivityColors[this.record.descriptor] ||
       MetricColors[this.record.descriptor];
+    if (this.record.type === RecordType.activity) {
+      this.recordStyle['background-color'] = recordColor;
+    }
+    if (this.record.type === RecordType.metric) {
+      this.recordStyle['border-color'] = recordColor;
+    }
     this.childColor = ChildColors[this.record.child];
     this.maxChildWidthCH = 5; // TODO: dynamically calculate
   }

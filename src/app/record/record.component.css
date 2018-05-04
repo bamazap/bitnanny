@@ -1,7 +1,37 @@
 mat-card {
-  border-radius: 5%;
   padding: 0;
   margin: 5px 0;
+  border-radius: 5%;
+  height: 4.25em;
+  width: 11em;
+}
+
+mat-card.Activity {
+  padding: 5px 0;
+}
+
+mat-card.Metric {
+  margin: 5px 0;
+  border-width: 5px;
+  border-style: solid;
+}
+
+mat-card.Activity > .text > .descriptor {
+  padding-left: 10px;
+}
+
+mat-card.Metric > .text > .descriptor {
+  padding-left: 5px;
+}
+
+mat-card > .text > .child {
+  padding-bottom: 5px;
+  padding-left: 10px;
+  margin-bottom: -5px;
+}
+
+mat-card.Metric > .text > .child {
+  margin-left: -5px;
 }
 
 mat-card:hover {
@@ -14,29 +44,32 @@ mat-card > * {
 }
 
 .text {
-  margin-right: 10px;
   text-align: left;
-  display: flex;
+  height: 100%;
 }
 
-.text > * {
-  padding-left: 5px;
-  padding-bottom: 5px;
-}
-
-.value {
+.circle {
   height: 50px;
   width: 50px;
   background-color: whitesmoke;
   border-radius: 50%;
-  margin-bottom: 5px;
+  margin: 5px !important;
   margin-right: 5px;
 }
 
-.descriptor {
-  font-size: 1.5em;
+.value {
+  font-size: 1em;
   font-weight: bold;
-  flex-grow: 1;
+}
+
+.hour {
+  font-size: .75em;
+}
+
+.descriptor {
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: BenchNine !important;
 }
 
 .star {
@@ -47,9 +80,12 @@ mat-card > * {
 }
 
 .child {
-  border-top: 1px solid #424242;
-  border-right: 1px solid #424242;
-  border-bottom-left-radius: 5%;
-  border-top-right-radius: 5%;
+  border-bottom-left-radius: 10%;
+  border-top-right-radius: 10%;
   color: white;
+  padding-top: 2px;
+  padding-right: 2px;
+  font-size: .8em;
 }
+
+/* edges */

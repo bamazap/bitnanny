@@ -1,16 +1,12 @@
 .day {
   height: 100%;
   text-align: center;
+  margin: 0 5px;
 }
 
 .day-header {
   text-align: center;
   font-size: 1.25em;
   font-weight: bold;
-  width: calc(100% - 4px);
   border-bottom: 1px solid lightgray;
-}
-
-.record {
-  width: calc(100% - 10px);
 }

@@ -9,6 +9,7 @@ html, body {
 
 *:not(mat-icon) {
   font-family: 'Raleway', sans-serif !important;
+  font-weight: 400;
 }
 
 button:hover, .button:hover {
