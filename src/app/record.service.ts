@@ -37,4 +37,8 @@ export class RecordService {
     return this.http.post<Record>(recordsUrl, record, httpOptions);
   }
 
+  deleteRecord(record: Record): Observable<Record> {
+    return 
+  }
+
 }
