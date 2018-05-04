@@ -3,6 +3,10 @@
   text-align: center;
 }
 
+.today-content {
+  background-color: #ffdc00;
+}
+
 .day-header {
   text-align: center;
   font-size: 1.25em;

@@ -2,7 +2,7 @@
   <div class='day-header' fxFlex='0 1 auto'>{{ dayText }}</div>
   <div
     fxLayout='column'
-    fxLayoutAlign='start center' class='day-content' fxFlex='1 1 auto'>
+    fxLayoutAlign='start center' [class]='dayContent' fxFlex='1 1 auto'>
     <div *ngFor='let record of records' class='record'>
       <app-record [record]='record'></app-record>
     </div>
