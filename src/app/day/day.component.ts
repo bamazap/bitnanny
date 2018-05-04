@@ -39,6 +39,7 @@ export class DayComponent implements OnInit {
   dayNumber: number;
   dayText = '';
   records: Record[] = [];
+  dayContent = '';
 
   constructor(private recordService: RecordService) { }
 
@@ -48,6 +49,9 @@ export class DayComponent implements OnInit {
     this.dayText = `${days[d.getDay()].slice(0, 3)} ${d.getDate()}`;
     this.dayNumber = unixDays(new Date().getTime()) - this.daysBack;
     this.getRecords();
+    if (this.daysBack == 0) {
+      this.dayContent = 'today-content';
+    }
   }
 
   getRecords() {

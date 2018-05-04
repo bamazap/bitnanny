@@ -4,6 +4,10 @@
   margin: 0 5px;
 }
 
+.today-content {
+  background-color: #ffdc00;
+}
+
 .day-header {
   text-align: center;
   font-size: 1.25em;
