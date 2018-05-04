@@ -42,6 +42,7 @@ export class AnalyticsComponent implements OnInit {
       y: y,
       mode: 'markers',
       type: 'scatter',
+      hoverinfo: 'none',
       marker: {size: 16, color: '#041144'}
     };
     const data = [trace];
