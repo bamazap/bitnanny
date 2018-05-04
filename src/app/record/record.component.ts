@@ -10,7 +10,7 @@ import { FilterService } from '../filter.service';
 
 import { Record, RecordType } from '../record';
 import { Filter } from '../filter';
-
+import { ActivityColors, MetricColors, ChildColors } from '../colors';
 
 @Component({
   selector: 'app-record',
@@ -20,6 +20,9 @@ import { Filter } from '../filter';
 export class RecordComponent implements OnInit {
   @Input() record: Record;
   show = true;
+  recordColor = '';
+  childColor = '';
+  maxChildWidthCH = 0;
 
   constructor(
     private dialog: MatDialog,
@@ -36,6 +39,10 @@ export class RecordComponent implements OnInit {
         this.show = this.decideVisibility(filter);
       });
     });
+    this.recordColor = ActivityColors[this.record.descriptor] ||
+      MetricColors[this.record.descriptor];
+    this.childColor = ChildColors[this.record.child];
+    this.maxChildWidthCH = 5; // TODO: dynamically calculate
   }
 
   // TODO: ew. I couldn't think of better boolean logic...

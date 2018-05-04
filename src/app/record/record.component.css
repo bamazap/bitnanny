@@ -1,15 +1,7 @@
 mat-card {
-  background-color: #d4abe8;
   border-radius: 5%;
-  padding: 5px;
-  color: #041144;
+  padding: 0;
   margin: 5px 0;
-}
-mat-card.Bryan {
-  background-color: #99ccff;
-}
-mat-card.Emily {
-  background-color: #ffccff;
 }
 
 mat-card:hover {
@@ -17,22 +9,19 @@ mat-card:hover {
   cursor: pointer;
 }
 
-mat-card-header {
-  justify-content: center;
-  margin-bottom: 5px;
-}
-
-mat-card-title {
-  margin-bottom: 0;
-}
-
-mat-card-content {
-  justify-content: center;
+mat-card > * {
+  margin-top: 5px;
 }
 
 .text {
   margin-right: 10px;
   text-align: left;
+  display: flex;
+}
+
+.text > * {
+  padding-left: 5px;
+  padding-bottom: 5px;
 }
 
 .value {
@@ -41,11 +30,13 @@ mat-card-content {
   background-color: whitesmoke;
   border-radius: 50%;
   margin-bottom: 5px;
+  margin-right: 5px;
 }
 
 .descriptor {
   font-size: 1.5em;
   font-weight: bold;
+  flex-grow: 1;
 }
 
 .star {
@@ -53,4 +44,12 @@ mat-card-content {
   font-size: 18px;
   padding-top: 6px;
   text-shadow: 0px 0px 3px #000;
+}
+
+.child {
+  border-top: 1px solid #424242;
+  border-right: 1px solid #424242;
+  border-bottom-left-radius: 5%;
+  border-top-right-radius: 5%;
+  color: white;
 }

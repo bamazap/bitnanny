@@ -6,6 +6,7 @@ import { Filter } from '../filter';
 import { RecordService } from '../record.service';
 import { SelectService } from '../select.service';
 import { Selection } from '../selection';
+import { Record } from '../record';
 
 
 @Component({
@@ -23,15 +24,19 @@ export class AnalyticsComponent implements OnInit {
   x = [7, 3, 8, 5, 10, 9, 8, 4, 5, 6];
   y: [3, 1, 4, 3, 4, 3.5, 4.2, 1.2, 0.4, 2.1];
 
-  records = [];
+  records: Record[] = [];
   dayNumber = 1;
 
   // activityToLabel = {Sleep: 'Hours of Sleep'};
   // metricToLabel = {Mood: 'Mood'};
 
-  constructor(private filterService: FilterService, private recordService: RecordService, private selectService: SelectService) { }
+  constructor(
+    private filterService: FilterService,
+    private recordService: RecordService,
+    private selectService: SelectService
+  ) { }
 
-  getPlotData(x,y) {
+  getPlotData(x, y) {
       const trace: any = {
       x: x,
       y: y,
@@ -67,24 +72,29 @@ export class AnalyticsComponent implements OnInit {
   }
 
   recordsForChild(records, child, activity, metric) {
-    var x = [];
-    var y = [];
-    var days = this.records.map(record => record.day);
-    if (child == 'Bryan' && activity == 'Sleep' && metric == 'Mood') {
-      //debugger;
-    }
-    for (var i = 0; i < days.length; i++) {
-      var day = days[i];
-      var dayActivities = this.records.filter(record => record.day == day && record.descriptor == activity && record.child == child);
-      var dayMetrics = this.records.filter(record => record.day == day && record.descriptor == metric && record.child == child);
+    const x = [];
+    const y = [];
+    const days = this.records.map(record => record.day);
+    for (let i = 0; i < days.length; i++) {
+      const day = days[i];
+      const dayActivities = this.records.filter(record =>
+        record.day === day &&
+        record.descriptor === activity &&
+        record.child === child
+      );
+      const dayMetrics = this.records.filter(record =>
+        record.day === day &&
+        record.descriptor === metric &&
+        record.child === child
+      );
       if (dayActivities.length > 0 && dayMetrics.length > 0) {
-        var dayMetric = dayMetrics[0];
-        var dayActivity = dayActivities[0];
+        const dayMetric = dayMetrics[0];
+        const dayActivity = dayActivities[0];
         x.push(dayActivity.value);
         y.push(dayMetric.value);
       }
     }
-    return [x,y];
+    return [x, y];
   }
 
   decideVisibility(selection: Selection): boolean {
@@ -104,9 +114,9 @@ export class AnalyticsComponent implements OnInit {
   }
 
   ngOnInit() {
-    var data = this.getPlotData(this.x, this.y);
+    let data = this.getPlotData(this.x, this.y);
     this.getRecords();
-    var layout = this.getPlotLayout(
+    let layout = this.getPlotLayout(
       this.currentChild,
       this.currentActivity,
       this.currentMetric
@@ -124,17 +134,26 @@ export class AnalyticsComponent implements OnInit {
           this.currentChild = this.getChild(selection);
           this.currentActivity = this.getActivity(selection);
           this.currentMetric = this.getMetric(selection);
-          const layout = this.getPlotLayout(
+          layout = this.getPlotLayout(
             this.currentChild,
             this.currentActivity,
             this.currentMetric
           );
-          var records = this.records;
-          var x_y = this.recordsForChild(records, this.currentChild, this.currentActivity, this.currentMetric);
-          var x = x_y[0];
-          var y = x_y[1];
-          var data = this.getPlotData(x, y);
-          var newLayout = this.getPlotLayout(this.currentChild, this.currentActivity, this.currentMetric);
+          const records = this.records;
+          const x_y = this.recordsForChild(
+            records,
+            this.currentChild,
+            this.currentActivity,
+            this.currentMetric
+          );
+          const x = x_y[0];
+          const y = x_y[1];
+          data = this.getPlotData(x, y);
+          const newLayout = this.getPlotLayout(
+            this.currentChild,
+            this.currentActivity,
+            this.currentMetric
+          );
           Plotly.newPlot('myDiv', data, newLayout, {displayModeBar: false});
         }
       });
