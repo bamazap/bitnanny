@@ -52,14 +52,16 @@ export class AnalyticsComponent implements OnInit {
   getPlotLayout(child, activity, metric) {
     const layout = {
     title: activity + ' vs. ' + metric + ' for ' + child,
-    titlefont: { size: 18, color: '#041144'},
+    titlefont: { size: 40, color: '#041144'},
     xaxis: {
       title: activity,
-      titlefont: {size: 16, color: '#041144'}
+      titlefont: {size: 32, color: '#041144'},
+      tickfont: {size: 22, color: '#041144'}
     },
     yaxis: {
       title: metric,
-      titlefont: {size: 16, color: '#041144'}
+      titlefont: {size: 32, color: '#041144'}, 
+      tickfont: {size: 22, color: '#041144'}
     },
   };
   return layout;
