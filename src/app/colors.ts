@@ -2,6 +2,7 @@ import { ActivityCategories, MetricNames } from './record';
 const ChildNames = ['Bryan', 'Emily'];
 const activityColors = ["#fab1a0", "#81ecec", "#74b9ff", "#ffeaa7", "#55efc4"]; 
 const metricColors = ["#00b894", "#fdcb6e", "#0984e3"]; 
+const childColors = ["#74b9ff", "#fd79a8"]; 
 import { randint } from '../utils';
 
 export const ActivityColors: {[s: string]: string} = {};
@@ -26,8 +27,9 @@ MetricNames.forEach((metricName) => {
 
 hue = randint(0, 270);
 skip = Math.floor(270 / 2); // TODO: dynamic num children
+index = 0; 
 ChildNames.forEach((childName) => {
-  ChildColors[childName] = `hsl(${hue + 90}, 50%, 40%)`;
-  hue += (hue + skip) % 270;
-
+  ChildColors[childName] = childColors[index]; // `hsl(${hue + 90}, 50%, 40%)`;
+  // hue += (hue + skip) % 270;
+  index += 1; 
 });

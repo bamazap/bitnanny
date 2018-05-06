@@ -8,7 +8,7 @@ h1 {
   margin: 0;
   font-size: 4rem;
   padding-bottom: 10px;
-  color: #3c0566;
+  color: #2d3436;
 }
 
 nav {
@@ -17,13 +17,13 @@ nav {
 }
 
 a {
-  background-color: #d4abe8;
+  background-color: #636e72;
   padding: 0 50px 0 50px;
   margin: 0 10px 0 10px;
-  color: #041144;
+  color: #2d3436;
 }
 
 .mat-tab-label-active, .mat-tab-label-focus {
-  background-color: rgba(197,202,233,.3);
-  color: #0ba867;
+  background-color:#dfe6e9;
+  color: #2d3436/*#0ba867;*/
 }
