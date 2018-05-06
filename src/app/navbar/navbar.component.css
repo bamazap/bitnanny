@@ -24,6 +24,6 @@ a {
 }
 
 .mat-tab-label-active, .mat-tab-label-focus {
-  background-color: #440444;
+  background-color: rgba(197,202,233,.3);
   color: #0ba867;
 }
