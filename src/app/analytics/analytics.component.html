@@ -8,6 +8,7 @@
     </div>
     <div class="content">
       <div id="myDiv" [ngClass]="show ? 'show': 'hide'"></div>
+      <div id="analysisDiv" *ngIf="showSummary"><h1 id="analysisText">{{summaryText}}</h1></div>
     </div>
   </div>
 </div>
