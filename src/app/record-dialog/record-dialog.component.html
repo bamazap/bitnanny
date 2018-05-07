@@ -37,14 +37,26 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field *ngIf="recordType === 'Activity'">
+  <mat-form-field *ngIf="recordType === 'Activity'" class='time-field'>
+    <!-- <app-duration-picker matInput [(value)]="myDuration"></app-duration-picker> -->
     <input matInput
-      placeholder="Duration (hrs)"
-      formControlName="value"
+      placeholder="Hrs"
+      formControlName="value1"
       type="number"
-      step="0.5"
+      step="1"
       min="0"
       max="24"
+    >
+
+  </mat-form-field><mat-form-field *ngIf="recordType === 'Activity'" class='time-field'>
+    <input matInput
+      placeholder="Mins"
+      formControlName="mins"
+      type="number"
+      step="15"
+      min="0"
+      max="59"
+      (change)="minutesChanged($event)"
     >
   </mat-form-field>
   <mat-form-field *ngIf="recordType === 'Metric'" floatLabel="never">
@@ -56,7 +68,7 @@
     ></neutron-rating>
     <input matInput
       placeholder="Rating"
-      formControlName="value"
+      formControlName="value1"
       id='fakeInput'
       readonly
     >
