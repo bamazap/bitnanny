@@ -82,14 +82,15 @@ export class AnalyticsComponent implements OnInit {
         mode: 'markers',
         type: 'scatter',
         hoverinfo: 'none',
-        marker: {size: 16, color: '#041144'}
+        marker: {size: 16, color: '#041144'},
       };
       const trace2: any = {
         x: fittedLineX,
         y: fittedLineY,
         mode: 'lines',
         type: 'scatter',
-        marker: {size: 16, color: '#b22222'}
+        marker: {size: 16, color: '#b22222'},
+        hoverinfo: 'none',
       }
     const data = [trace, trace2];
     return data;
@@ -105,21 +106,22 @@ export class AnalyticsComponent implements OnInit {
       metricLabel = metric;
     }
     const layout = {
-    title: activity + ' vs. ' + metric + ' for ' + child,
-    showlegend: false,
-    titlefont: { size: 36, color: '#041144'},
-    xaxis: {
-      title: activityLabel,
-      titlefont: {size: 28, color: '#041144'},
-      tickfont: {size: 22, color: '#041144'}
-    },
-    yaxis: {
-      title: metricLabel,
-      titlefont: {size: 28, color: '#041144'}, 
-      tickfont: {size: 22, color: '#041144'}
-    },
-  };
-  return layout;
+      title: activity + ' vs. ' + metric + ' for ' + child,
+      showlegend: false,
+      titlefont: { size: 36, color: '#041144'},
+      xaxis: {
+        title: activityLabel,
+        titlefont: {size: 28, color: '#041144'},
+        tickfont: {size: 22, color: '#041144'}
+      },
+      yaxis: {
+        title: metricLabel,
+        titlefont: {size: 28, color: '#041144'}, 
+        tickfont: {size: 22, color: '#041144'}
+      },
+      hovermode: <false>false,
+    };
+    return layout;
   }
 
   getRecords() {
@@ -212,7 +214,7 @@ export class AnalyticsComponent implements OnInit {
             this.currentActivity,
             this.currentMetric
           );
-          Plotly.newPlot('myDiv', data, newLayout, {displayModeBar: false});
+          Plotly.newPlot('myDiv', data, newLayout, { displayModeBar: false });
         }
       });
     });
