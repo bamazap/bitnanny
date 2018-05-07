@@ -86,9 +86,13 @@ export class RecordComponent implements OnInit {
       MetricColors[this.record.descriptor];
     if (this.record.type === RecordType.activity) {
       this.recordStyle['background-color'] = recordColor;
+    } else {
+      this.recordStyle['background-color'] = '';
     }
     if (this.record.type === RecordType.metric) {
       this.recordStyle['border-color'] = recordColor;
+    } else {
+      this.recordStyle['border-color'] = '';
     }
     this.childColor = ChildColors[this.record.child];
     this.maxChildWidthCH = 5; // TODO: dynamically calculate
@@ -131,7 +135,7 @@ export class RecordComponent implements OnInit {
               this.record.type = data.type;
               this.updateView();
               if (this.lastFilter) {
-                this.decideVisibility(this.lastFilter);
+                this.show = this.decideVisibility(this.lastFilter);
               }
               this.afterUpdate.emit(this.record);
             });

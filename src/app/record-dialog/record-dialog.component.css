@@ -30,6 +30,10 @@ neutron-rating {
   background-color: #0ba867;
 }
 
+#save:disabled {
+  background-color: #5e937d;
+}
+
 #close {
   background-color: lightgray;
   margin-left: auto;
