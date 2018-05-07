@@ -15,11 +15,14 @@
     </div>
   </div>
   <div fxLayout='column' fxLayoutAlign='center center' class="circle">
-    <div class="value">
-      {{ +record.value.toFixed(2) }}
+    <div class="value" *ngIf="record.type === 'Activity'">
+      {{ time(record.value) }}
     </div>
     <div class="hour" *ngIf="record.type === 'Activity'">
       {{ record.value !== 1 ? 'hrs' : 'hr'}}
+    </div>
+    <div class="value" *ngIf="record.type === 'Metric'">
+      {{ +record.value.toFixed(2) }}
     </div>
     <span *ngIf="record.type === 'Metric'">
       <mat-icon class='star'>star</mat-icon>

@@ -63,7 +63,6 @@ export class RecordDialogComponent implements OnInit {
     }
     // this line is really stupid but i didn't know how else to get a 0 to display properly
     this.form.value.value = this.form.value.value1;
-    console.log(this.form.value);
     this.dialogRef.close(Object.assign( data, this.form.value ));
   }
 

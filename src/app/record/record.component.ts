@@ -11,6 +11,44 @@ import { FilterService } from '../filter.service';
 import { Record, RecordType } from '../record';
 import { Filter } from '../filter';
 import { ActivityColors, MetricColors, ChildColors } from '../colors';
+import * as Fraction from 'fraction.js';
+
+const vulgarFractions = {
+  0: '',
+  [1/10]: '⅒',
+  [1/9]: '⅑',
+  [1/8]: '⅛',
+  [1/7]: '⅐',
+  [1/6]: '⅙',
+  [1/5]: '⅕',
+  [1/4]: '¼',
+  [1/3]: '⅓',
+  [1/2]: '½',
+  [2/5]: '⅖',
+  [2/3]: '⅔',
+  [3/8]: '⅜',
+  [3/5]: '⅗',
+  [3/4]: '¾',
+  [4/5]: '⅘',
+  [5/8]: '⅝',
+  [5/6]: '⅚',
+  [7/8]: '⅞',
+};
+
+function closestVulgarFraction(value: number): string {
+  let minDistance = Infinity;
+  let closestFrac = '';
+  Object.entries(vulgarFractions).forEach(([decimal, fraction]) => {
+    console.log(decimal);
+    const distance = Math.abs(Number(decimal) - value);
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestFrac = fraction;
+    }
+  });
+  console.log(closestFrac);
+  return closestFrac;
+}
 
 @Component({
   selector: 'app-record',
@@ -89,6 +127,13 @@ export class RecordComponent implements OnInit {
             });
         }
       });
+  }
+
+  time(value: number): string {
+    const hours = Math.floor(value);
+    const minutes = (value - hours) * 60;
+    const nearestFiveMinutes = Math.round((minutes/ 5) * 5);
+    return `${hours} ${closestVulgarFraction(nearestFiveMinutes / 60)}`;
   }
 
 }
