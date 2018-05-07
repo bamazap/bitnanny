@@ -39,14 +39,12 @@ function closestVulgarFraction(value: number): string {
   let minDistance = Infinity;
   let closestFrac = '';
   Object.entries(vulgarFractions).forEach(([decimal, fraction]) => {
-    console.log(decimal);
     const distance = Math.abs(Number(decimal) - value);
     if (distance < minDistance) {
       minDistance = distance;
       closestFrac = fraction;
     }
   });
-  console.log(closestFrac);
   return closestFrac;
 }
 
@@ -134,6 +132,10 @@ export class RecordComponent implements OnInit {
     const minutes = (value - hours) * 60;
     const nearestFiveMinutes = Math.round((minutes/ 5) * 5);
     return `${hours} ${closestVulgarFraction(nearestFiveMinutes / 60)}`;
+  }
+
+  starSrc(value: number): string {
+    return `assets/img/star-${value}.png`;
   }
 
 }

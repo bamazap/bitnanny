@@ -21,11 +21,8 @@
     <div class="hour" *ngIf="record.type === 'Activity'">
       {{ record.value !== 1 ? 'hrs' : 'hr'}}
     </div>
-    <div class="value" *ngIf="record.type === 'Metric'">
-      {{ +record.value.toFixed(2) }}
+    <div *ngIf="record.type === 'Metric'">
+      <img class='star-img' [src]="starSrc(record.value)" alt="image">
     </div>
-    <span *ngIf="record.type === 'Metric'">
-      <mat-icon class='star'>star</mat-icon>
-    </span>
   </div>
 </mat-card>

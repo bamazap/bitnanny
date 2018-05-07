@@ -55,11 +55,20 @@ mat-card > * {
   border-radius: 50%;
   margin: 5px !important;
   margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .value {
   font-size: 1em;
   font-weight: bold;
+}
+
+.star-img {
+  width: 48px;
+  height: 48px;
+  margin-top: 4px;
 }
 
 .hour {
