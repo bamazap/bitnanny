@@ -34,7 +34,7 @@ export class AddRecordComponent implements OnInit {
 
     this.dialog.open(RecordDialogComponent, dialogConfig)
       .afterClosed().subscribe(data => {
-        if (data && data.action === 'save') {
+        if (data.action === 'create') {
           this.recordService.createRecord(data)
             .subscribe(record => this.afterAdd.emit(record));
         }

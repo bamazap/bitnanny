@@ -55,11 +55,13 @@ function closestVulgarFraction(value: number): string {
 })
 export class RecordComponent implements OnInit {
   @Input() record: Record;
-  @Output() afterDelete = new EventEmitter<Record>();
+  @Output() afterDelete = new EventEmitter<number>();
+  @Output() afterUpdate = new EventEmitter<Record>();
   show = true;
   recordStyle = {};
   childColor = '';
   maxChildWidthCH = 0;
+  lastFilter: Filter;
 
   constructor(
     private dialog: MatDialog,
@@ -76,6 +78,10 @@ export class RecordComponent implements OnInit {
         this.show = this.decideVisibility(filter);
       });
     });
+    this.updateView();
+  }
+
+  updateView() {
     const recordColor = ActivityColors[this.record.descriptor] ||
       MetricColors[this.record.descriptor];
     if (this.record.type === RecordType.activity) {
@@ -116,15 +122,20 @@ export class RecordComponent implements OnInit {
 
     this.dialog.open(RecordDialogComponent, dialogConfig)
       .afterClosed().subscribe(data => {
-        if (data && data.action === 'save') {
+        if (data.action === 'update') {
           this.recordService.updateRecord(<Record>this.record)
             .subscribe(() => {
               this.record.value = data.value;
               this.record.child = data.child;
               this.record.descriptor = data.descriptor;
               this.record.type = data.type;
+              this.updateView();
+              if (this.lastFilter) {
+                this.decideVisibility(this.lastFilter);
+              }
+              this.afterUpdate.emit(this.record);
             });
-        } else if (data && data.action === 'delete') {
+        } else if (data.action === 'delete') {
           this.recordService.deleteRecord(data.id)
             .subscribe(() => {
               this.afterDelete.emit(data.id);

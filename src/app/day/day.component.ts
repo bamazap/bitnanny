@@ -71,6 +71,10 @@ export class DayComponent implements OnInit {
     filterInPlace(this.records, record => record.id !== deletedID);
   }
 
+  afterUpdate(record: Record) {
+    this.sortRecords();
+  }
+
   sortRecords() {
     this.records.sort((recordA, recordB) => {
       if (recordA.type === recordB.type) {

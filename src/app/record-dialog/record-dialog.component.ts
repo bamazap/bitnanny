@@ -58,7 +58,11 @@ export class RecordDialogComponent implements OnInit {
   }
 
   save() {
-    const data: any = { type: this.recordType, action: 'save' };
+    const action = this.recordID ? 'update' : 'create';
+    const data: any = { type: this.recordType, action };
+    if (this.recordID) {
+      Object.assign(data, { id: this.recordID });
+    }
     if (this.recordType === 'Activity') {
       this.form.value.value1 += this.form.value.mins / 60;
     }
@@ -68,7 +72,7 @@ export class RecordDialogComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close();
+    this.dialogRef.close({ action: 'none' });
   }
 
   delete() {
