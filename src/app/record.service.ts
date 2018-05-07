@@ -37,8 +37,8 @@ export class RecordService {
     return this.http.post<Record>(recordsUrl, record, httpOptions);
   }
 
-  deleteRecord(record: Record): Observable<Record> {
-    return 
+  deleteRecord(id: number): Observable<Record> {
+    return this.http.delete<Record>(`${recordsUrl}/${id}`, httpOptions);
   }
 
 }

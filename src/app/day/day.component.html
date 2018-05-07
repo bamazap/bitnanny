@@ -4,9 +4,15 @@
     fxLayout='column'
     fxLayoutAlign='start center' fxFlex='1 1 auto'>
     <div *ngFor='let record of records' class='record'>
-      <app-record [record]='record'></app-record>
+      <app-record
+        [record]='record'
+        (afterDelete)='afterDelete($event)'
+      ></app-record>
     </div>
-    <app-add-record [day]='dayNumber' (afterAdd)='afterAdd($event)' (afterDelete)='afterDelete($event)'>
+    <app-add-record
+      [day]='dayNumber'
+      (afterAdd)='afterAdd($event)'
+    >
     </app-add-record>
   </div>
 </div>

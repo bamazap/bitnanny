@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
@@ -55,6 +55,7 @@ function closestVulgarFraction(value: number): string {
 })
 export class RecordComponent implements OnInit {
   @Input() record: Record;
+  @Output() afterDelete = new EventEmitter<Record>();
   show = true;
   recordStyle = {};
   childColor = '';
@@ -115,13 +116,18 @@ export class RecordComponent implements OnInit {
 
     this.dialog.open(RecordDialogComponent, dialogConfig)
       .afterClosed().subscribe(data => {
-        if (data) {
+        if (data && data.action === 'save') {
           this.recordService.updateRecord(<Record>this.record)
             .subscribe(() => {
               this.record.value = data.value;
               this.record.child = data.child;
               this.record.descriptor = data.descriptor;
               this.record.type = data.type;
+            });
+        } else if (data && data.action === 'delete') {
+          this.recordService.deleteRecord(data.id)
+            .subscribe(() => {
+              this.afterDelete.emit(data.id);
             });
         }
       });

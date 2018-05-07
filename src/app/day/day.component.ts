@@ -2,7 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 
 import { Record, RecordType } from '../record';
 import { RecordService } from '../record.service';
-import { unixDays, compare } from '../../utils';
+import { unixDays, compare, filterInPlace } from '../../utils';
 
 const days = [
   'Sunday',
@@ -65,6 +65,10 @@ export class DayComponent implements OnInit {
   afterAdd(record: Record) {
     this.records.push(record);
     this.sortRecords();
+  }
+
+  afterDelete(deletedID: number) {
+    filterInPlace(this.records, record => record.id !== deletedID);
   }
 
   sortRecords() {

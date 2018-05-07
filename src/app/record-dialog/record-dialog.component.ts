@@ -24,13 +24,13 @@ export class RecordDialogComponent implements OnInit {
   recordType: string;
   activityCategories = ActivityCategories;
   metricNames = MetricNames;
+  recordID: number;
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<RecordDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data: Record
   ) {
-    //console.log(data.value)
     this.descriptor = data.descriptor;
     if (data.value) {
       this.value = Math.floor(data.value);
@@ -43,6 +43,7 @@ export class RecordDialogComponent implements OnInit {
     this.child = data.child;
     this.day = data.day;
     this.recordType = data.type;
+    this.recordID = data.id;
   }
 
   ngOnInit() {
@@ -57,7 +58,7 @@ export class RecordDialogComponent implements OnInit {
   }
 
   save() {
-    const data: any = { type: this.recordType };
+    const data: any = { type: this.recordType, action: 'save' };
     if (this.recordType === 'Activity') {
       this.form.value.value1 += this.form.value.mins / 60;
     }
@@ -71,8 +72,7 @@ export class RecordDialogComponent implements OnInit {
   }
 
   delete() {
-    const data: any = { type: this.recordType };
-    this.dialogRef.close(delete this.recordType);
+    this.dialogRef.close({ id: this.recordID, action: 'delete' });
   }
 
   radioChange(_evt) {
