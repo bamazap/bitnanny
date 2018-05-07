@@ -11,6 +11,11 @@ mat-form-field, .mat-form-field {
   width: 100%;
 }
 
+.time-field {
+  width: 10%;
+  margin-right: 10px;
+}
+
 neutron-rating {
   position: absolute;
   left: 55px;
