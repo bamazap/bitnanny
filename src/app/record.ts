@@ -18,7 +18,7 @@ export enum RecordType {
 export const ActivityCategories = [
   'Exercise',
   'Arts',
-  'Academics',
+  'Homework',
   'Sleep',
   'Electronics',
 ];
@@ -26,5 +26,5 @@ export const ActivityCategories = [
 export const MetricNames = [
   'Mood',
   'Energy',
-  'Academic Performance'
+  'Academics'
 ];

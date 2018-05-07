@@ -1,93 +1,102 @@
-<h1 *ngIf="!recordType">
-  Select record type.
-</h1>
-<div mat-dialog-title id='title'>
-  <mat-radio-group [(ngModel)]="recordType" (change)="radioChange($event)">
-    <mat-radio-button value="Activity">Activity</mat-radio-button>
-    <mat-radio-button value="Metric">Evaluation</mat-radio-button>
-  </mat-radio-group>
+<div id='dialog'>
+  <h1 *ngIf="!recordType">
+    Select record type.
+  </h1>
+  <div mat-dialog-title id='title'>
+    <mat-radio-group [(ngModel)]="recordType" (change)="radioChange($event)">
+      <mat-radio-button value="Activity">Activity</mat-radio-button>
+      <mat-radio-button value="Metric">Evaluation</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <mat-dialog-content *ngIf="recordType" [formGroup]="form">
+
+    <mat-form-field *ngIf="recordType === 'Activity'">
+      <mat-select
+        placeholder="Category"
+        formControlName="descriptor"
+      >
+        <mat-option
+          *ngFor="let category of activityCategories"
+          [value]="category"
+        >
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="recordType === 'Metric'">
+      <mat-select
+        placeholder="Evaluation"
+        formControlName="descriptor"
+      >
+        <mat-option
+          *ngFor="let metric of metricNames"
+          [value]="metric"
+        >
+          {{ metric }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div
+      *ngIf="recordType === 'Activity'"
+      fxFlexLayout='row'
+      fxLayoutAlign='between'
+    >
+      <mat-form-field class='time-field'>
+        <input matInput
+          placeholder="Hrs"
+          formControlName="value1"
+          type="number"
+          step="1"
+          min="0"
+          max="24"
+          fxFlex='1 1 auto'
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+          placeholder="Mins"
+          formControlName="mins"
+          type="number"
+          step="15"
+          min="0"
+          max="59"
+          (change)="minutesChanged($event)"
+          fxFlex='1 1 auto'
+        >
+      </mat-form-field>
+    </div>
+    <mat-form-field *ngIf="recordType === 'Metric'" floatLabel="never">
+      <neutron-rating
+        [rating]='0'
+        [starColour]="gold"
+        [starSize]="2"
+        (ratingClicked)='onRatingClicked($event)'
+      ></neutron-rating>
+      <input matInput
+        placeholder="Rating"
+        formControlName="value1"
+        id='fakeInput'
+        readonly
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Child" formControlName="child">
+        <mat-option value="Bryan">Bryan</mat-option>
+        <mat-option value="Emily">Emily</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions *ngIf="recordType">
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button
+      class="mat-raised-button mat-primary"
+      [disabled]="form.invalid"
+      (click)="save()"
+    >Save</button>
+    <button class="mat-raised-button" (click)="delete()">Delete</button>
+  </mat-dialog-actions>
 </div>
-
-<mat-dialog-content *ngIf="recordType" [formGroup]="form">
-
-  <mat-form-field *ngIf="recordType === 'Activity'">
-    <mat-select
-      placeholder="Category"
-      formControlName="descriptor"
-    >
-      <mat-option
-        *ngFor="let category of activityCategories"
-        [value]="category"
-      >
-        {{ category }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field *ngIf="recordType === 'Metric'">
-    <mat-select
-      placeholder="Evaluation"
-      formControlName="descriptor"
-    >
-      <mat-option
-        *ngFor="let metric of metricNames"
-        [value]="metric"
-      >
-        {{ metric }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field *ngIf="recordType === 'Activity'" class='time-field'>
-    <!-- <app-duration-picker matInput [(value)]="myDuration"></app-duration-picker> -->
-    <input matInput
-      placeholder="Hrs"
-      formControlName="value1"
-      type="number"
-      step="1"
-      min="0"
-      max="24"
-    >
-
-  </mat-form-field><mat-form-field *ngIf="recordType === 'Activity'" class='time-field'>
-    <input matInput
-      placeholder="Mins"
-      formControlName="mins"
-      type="number"
-      step="15"
-      min="0"
-      max="59"
-      (change)="minutesChanged($event)"
-    >
-  </mat-form-field>
-  <mat-form-field *ngIf="recordType === 'Metric'" floatLabel="never">
-    <neutron-rating
-      [rating]='0'
-      [starColour]="gold"
-      [starSize]="2"
-      (ratingClicked)='onRatingClicked($event)'
-    ></neutron-rating>
-    <input matInput
-      placeholder="Rating"
-      formControlName="value1"
-      id='fakeInput'
-      readonly
-    >
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Child" formControlName="child">
-      <mat-option value="Bryan">Bryan</mat-option>
-      <mat-option value="Emily">Emily</mat-option>
-    </mat-select>
-  </mat-form-field>
-</mat-dialog-content>
-
-<mat-dialog-actions *ngIf="recordType">
-  <button class="mat-raised-button" (click)="close()">Close</button>
-  <button
-    class="mat-raised-button mat-primary"
-    [disabled]="form.invalid"
-    (click)="save()"
-  >Save</button>
-  <button class="mat-raised-button" (click)="delete()">Delete</button>
-</mat-dialog-actions>

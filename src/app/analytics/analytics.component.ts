@@ -25,7 +25,7 @@ export class AnalyticsComponent implements OnInit {
   summaryText = '';
 
   itemsToLabels = {'Sleep': 'Hours of Sleep', 'Mood': 'Mood Rating',
-                    'Exercise': 'Hours of Exercise', 'Academic Performance': 'GPA'};
+                    'Exercise': 'Hours of Exercise', 'Academics': 'GPA'};
 
   x = [7, 3, 8, 5, 10, 9, 8, 4, 5, 6];
   y = [3, 1, 4, 3, 4, 3.5, 4.2, 1.2, 0.4, 2.1];
