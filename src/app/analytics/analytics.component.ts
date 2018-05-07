@@ -220,4 +220,8 @@ export class AnalyticsComponent implements OnInit {
     });
   }
 
+  onResize() {
+    Plotly.Plots.resize('myDiv');
+  }
+
 }

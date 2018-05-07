@@ -1,14 +1,22 @@
 <div fxLayout='column'>
   <app-select fxFlex='0 1 auto'></app-select>
-  <div fxFlex='1 1 100vw'>
+  <div fxFlex='1 1 auto'>
     <div class='message'>
       <h2 *ngIf="!show">
         Select a child, activity, and evaluation to see trends.
       </h2>
     </div>
     <div class="content">
-      <div id="myDiv" [ngClass]="show ? 'show': 'hide'"></div>
-      <div id="analysisDiv" *ngIf="showSummary"><h1 id="analysisText">{{summaryText}}</h1></div>
+      <div id="myDiv"
+        [ngClass]="show ? 'show': 'hide'"
+        (window:resize)="onResize($event)"
+      ></div>
+      <div
+        id="analysisDiv"
+        *ngIf="showSummary"
+      >
+        <h1 id="analysisText">{{summaryText}}</h1>
+      </div>
     </div>
   </div>
 </div>
