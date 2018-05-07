@@ -26,5 +26,14 @@ neutron-rating {
   opacity: 0;
 }
 
+#save {
+  background-color: #0ba867;
+}
+
+#close {
+  background-color: lightgray;
+  margin-left: auto;
+}
+
 /* the placeholder for fakeInput is forced to be shown in global styles */
 /* stars are given dark borders in global styles */
