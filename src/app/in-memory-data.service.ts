@@ -13,7 +13,7 @@ function withType<T>(obj: T, type: RecordType): T & { type: RecordType} {
   return <T & { type: RecordType }>obj;
 }
 
-const intToChild = {0: 'Bryan', 1: 'Emily'};
+const intToChild = {1: 'Bryan', 0: 'Emily'};
 
 function generateSleep(nDays: number): RecordNoID[] {
   return [].concat(...range(2).map(child => range(nDays).map((day) => {
@@ -22,18 +22,24 @@ function generateSleep(nDays: number): RecordNoID[] {
   })));
 }
 
-function generateMood(nDays: number): RecordNoID[] {
-  return [].concat(...range(2).map(childID => range(nDays).map((day) => {
-    const value = randint(1, 5);
-    const child = childID === 1 ? 'Bryan' : 'Emily';
+function moodFromSleep(hours: number): number {
+  return Math.round((10 - (randint(1, 3) + randint(1, 5) * (Math.min(Math.abs(hours - 9), 5) / 5))) / 2);
+}
+
+function generateMood(sleep: RecordNoID[]): RecordNoID[] {
+  return sleep.map((sleepRecord) => {
+    const { value: hours, day, child } = sleepRecord;
+    const value = moodFromSleep(hours);
     return {day, child, descriptor: 'Mood', value, type: RecordType.metric};
-  })));
+  });
 }
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     // day means number of days ago (so we get the same load each time)
-    const activities: Record[] = generateSleep(14).concat([
+    const sleep = generateSleep(14);
+    const mood = generateMood(sleep);
+    const records = sleep.concat(mood).concat([
       { day: 1, child: 'Emily', descriptor: 'Arts', value: 1 },
       { day: 8, child: 'Emily', descriptor: 'Arts', value: 1 },
       { day: 12, child: 'Emily', descriptor: 'Arts', value: 1 },
@@ -49,8 +55,6 @@ export class InMemoryDataService implements InMemoryDbService {
       { day: 10, child: 'Bryan', descriptor: 'Electronics', value: 1.5 },
       { day: 13, child: 'Bryan', descriptor: 'Electronics', value: 2 },
     ].map(r => withType(r, RecordType.activity))).map(withID);
-    const metrics: Record[] = generateMood(14).map(withID);
-    const records = activities.concat(metrics);
     // convert day to unixDays
     records.forEach((record) => {
       record.day = unixDays(new Date().getTime()) - record.day;

@@ -1,5 +1,5 @@
 import * as seedrandom from 'seedrandom';
-seedrandom('bitnanny', { global: true });
+seedrandom(0, { global: true });
 
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
