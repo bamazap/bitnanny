@@ -12,6 +12,16 @@
     fill: none;
 }
 
+#analysisText {
+	font-weight: bold;
+	color: #ff00ff;
+	text-align: center;
+}
+
+#analysisDiv {
+	margin-top: 85px;
+}
+
 circle {
     fill: steelblue;
 }

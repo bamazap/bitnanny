@@ -21,6 +21,8 @@ export class AnalyticsComponent implements OnInit {
   currentActivity = 'Sleep';
   currentMetric = 'Mood';
   show = false;
+  showSummary = true;
+  summaryText = '';
 
   itemsToLabels = {'Sleep': 'Hours of Sleep', 'Mood': 'Mood Rating',
                     'Exercise': 'Hours of Exercise', 'Academic Performance': 'GPA'};
@@ -40,7 +42,27 @@ export class AnalyticsComponent implements OnInit {
     private selectService: SelectService
   ) { }
 
+  decideShowSummary(regressedResult) {
+    if (regressedResult.r2 > 0.2) {
+      var direction = 'positively';
+      if (regressedResult.equation[0] < 0.0) {
+        direction = 'negatively';
+      }
+      this.summaryText = this.currentActivity + ' ' + direction + ' influences '
+                          + this.currentMetric + ' for ' + this.currentChild + '.';
+      this.showSummary = this.show;
+    }
+    else {
+      this.summaryText = 'We do not see a significant relationship between ' + 
+              this.currentActivity + ' and ' + this.currentMetric + ' for ' + 
+                this.currentChild + '.';
+      this.showSummary = true;
+    }
+  }
+
   getPlotData(x, y) {
+      this.summaryText = '';
+      this.showSummary = false;
       var fittedLineX = [];
       var fittedLineY = [];
       if (x.length == y.length && x.length > 0) {
@@ -49,6 +71,7 @@ export class AnalyticsComponent implements OnInit {
           points.push([x[i], y[i]]);
         }
         var result = regression.linear(points);
+        this.decideShowSummary(result);
         var fitPoints = result.points;
         fittedLineX = fitPoints.map(point => point[0]);
         fittedLineY = fitPoints.map(point => point[1]);
@@ -65,9 +88,9 @@ export class AnalyticsComponent implements OnInit {
         x: fittedLineX,
         y: fittedLineY,
         mode: 'lines',
-        type: 'scatter'
+        type: 'scatter',
+        marker: {size: 16, color: '#b22222'}
       }
-
     const data = [trace, trace2];
     return data;
   }
